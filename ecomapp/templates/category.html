@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+<!--мы отображаем все что нах-ся ВНЕ block content-->
+{% block content  %}
+<!--все что будет написано внутри этого блока будет отображаться на странице категории-->
+<div class="col-sm-12">
+    <h2>{{ category.name }}</h2>
+    <hr>
+    {% for product in products_of_category %}
+    <div class="page-cont page-grid-quarter">
+        <div class="thumbnail">
+            <a href="{{ product.get_absolute_url }}">
+                {% for img in product.images.all|slice:":1" %}
+                <div class="item-image">
+                    <img src="{{ img.image.url }}">
+                </div>
+                {% endfor %}
+            </a>
+            <div class="info-container">
+                <div class="item-label">
+                    <div class="item-brand-name">
+                        {{ product.brand }}
+                    </div>
+                    <div class="item-article-name">
+                        {{ product.title }}
+                    </div>
+                </div>
+                <div class="item-price">
+                    <div class="item-original-price">
+                        {{ product.price }} €
+                    </div>
+                    <div class="item-sale-price">
+                        <!--скидочная цена--> SALE
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

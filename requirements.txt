@@ -1,0 +1,7 @@
+django~=2.1
+django-crispy-forms
+Pillow
+django-nested-admin
+django-mptt
+django-registration
+

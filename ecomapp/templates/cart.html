@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h3>SHOPPING BAG</h3>
+{% if items > 0 %}
+<div id="shoppingBasket">
+
+    <table class="table" style="margin-top:3vh;">
+        <thead>
+        <tr>
+            <th>Items</th>
+            <th></th>
+            <th>Qty</th>
+            <th>Size</th>
+            <th>Order Value</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items_of_cart %}
+        <tr class="cart-item-{{item.product.id}}">
+            <td class="colum-image">
+                {% for img in item.product.images.all|slice:":1" %}
+                <div class="basket-img">
+                    <a href="{{ item.product.get_absolute_url }}"> <img src="{{ img.image.url }}"></a>
+                </div>
+                {%endfor%}
+            </td>
+            <td class="colum-description">
+                <div>
+                    <h6>{{item.product.brand}}</h6>
+                    <p class="item-article-name">{{item.product.title}}</p>
+                    <a href="{{item.product.get_absolute_url}}">More details</a>
+                </div>
+            </td>
+            <td>
+                <!--форма для димамического изменения колличества товара в корзине-->
+
+                <form action="" method="get">
+                    <input type="number" class="cart-item-amount" data-id="{{item.id}}" name="amount"
+                           value="{{item.amount}}" min="1">
+                </form>
+            </td>
+            <td>{{item.size}}</td>
+            <td>
+                <div id="cart-item-total-{{item.id}}">
+                    {{item.item_total_price }}
+                </div>
+            </td>
+            <td>
+                <div class="delete-icon">
+                    <a href="#" class="remove-from-cart" data-slug="{{item.product.slug}}"
+                       data-id="{{item.product.id}}">
+                        <span class="glyphicon glyphicon-remove-sign" style="font-size:1.2em;"></span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="col-sm-8">
+        {% if summ > 0 %}
+        <div id="cart-total-summ"><p>Total: {{summ}} EUR</p></div>
+        {% endif %}
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-2">
+
+        <a href="{% url 'checkout' %}">
+            <button class="btn btn-info">GO TO CHECKOUT</button>
+        </a>
+    </div>
+</div>
+
+{% endif %}
+<div class="col-sm-8">
+        <div class="cart-empty" id="cart-is-empty" data-target="{{summ}}" style="display:none;">YOUR SHOPPING
+            BAG IS EMPTY
+        </div>
+    </div>
+
+<script src='{% static "js/jquery.js" %}'></script>
+
+<script>
+
+
+//скрипт для сообщения что корзина пуста
+    $(document).ready(function(){
+        var cart_val = $('#cart-is-empty').attr('data-target');
+        if (cart_val == 0){
+            $('#cart-is-empty').css('display', 'block');
+        };
+    });
+
+
+
+//скрипт для динамического удаления товара
+    $(document).ready(function(){
+        $('.remove-from-cart').on('click', function(e){
+//        e функция чтобы при клике не создавалось событие клик
+            e.preventDefault()
+            product_slug = $(this).attr('data-slug')
+            item_product_id = $(this).attr('data-id')
+            data = {
+                product_slug: product_slug
+                 }
+                 $.ajax({
+                    type: 'GET',
+                    url: '{% url "remove_from_cart" %}',
+                    data: data,
+                    success: function(data){
+                        $('#cart-total-amount').html(data.cart_total_amount);
+                        $('.cart-item-' + item_product_id).css('display', 'none');
+                        $('#cart-total-summ').html('Total: ' + data.cart_summ + ' EUR');
+                        if (parseInt(data.cart_total_amount) == 0){
+                            $('#shoppingBasket').css('display', 'none');
+                            $('#cart-total-summ').css('display', 'none');
+                            $('#cart-is-empty').css('display', 'block');
+                        }
+                    }
+                });
+        });
+    });
+
+//скрипт для динамического изменения товара в корзине
+    $(document).ready(function(){
+        $('.cart-item-amount').on('click', function(){
+            amount = $(this).val();
+            item_id = $(this).attr('data-id')
+            data = {
+                amount: amount,
+                item_id: item_id
+            }
+            $.ajax({
+                type: 'GET',
+                url: '{%  url "change_item_amount" %}',
+                data: data,
+                success: function(data){
+                    $('#cart-item-total-'+item_id).html(parseFloat(data.item_total_price).toFixed(2));
+                    $('#cart-total-summ').html('Total: ' + data.cart_summ + ' EUR');
+
+                }
+             });
+        });
+    });
+
+</script>
+
+{% endblock content %}
+
+

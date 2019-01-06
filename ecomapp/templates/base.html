@@ -1,0 +1,234 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>My Shop</title>
+
+
+    <!--  CSS -->
+    <!--<link rel='stylesheet' href='{% static "css/bootstrap.css" %}'>-->
+    <link rel='stylesheet' href='{% static "css/shop-homepage.css" %}'>
+    <link rel='stylesheet' href='{% static "css/styles.css" %}'>
+    <link rel='stylesheet' href='{% static "css/palette.css" %}'>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+    <!-- jQuery -->
+    <script src='{% static "js/jquery.js" %}'></script>
+
+    <!-- Javascript -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+    <!--<script src="{% static 'js/bootstrap.js' %}"></script>-->
+</head>
+
+<body>
+<!-- Navigation -->
+<nav class="main-nav-bar-wrapper">
+    <div class="nav-cont">
+        <div class="site-label-cont">
+            <a class="site-label nav-text" href="/">Ecom Shop</a>
+        </div>
+        <div class="nav-bar">
+            <ul class="main-nav-bar">
+                <li class="close-pop-up"><span class="lnr lnr-cross icon-remove"></span></li>
+                <li class="nav-hover">
+                    <div class="resp-nav-wrap">
+                        <div>
+                            <a href="/category/jackets/" class="nav-hover-btn">
+                                Jackets
+                            </a>
+                        </div>
+                        <div><span class="nav-icon lnr lnr-chevron-down"></span></div>
+                    </div>
+                    <div class="subnav-hover">
+                        <a href="/sub_category/leder-jackets">Leder Jackets</a>
+                        <a href="/sub_category/winter-jackets">Winter Jackets</a>
+                    </div>
+                </li>
+                <li class="nav-hover">
+                    <div class="resp-nav-wrap">
+                        <div>
+                            <a href="/category/dresses/" class="nav-hover-btn">
+                                Dresses
+                            </a>
+                        </div>
+                        <div><span class="nav-icon lnr lnr-chevron-down"></span></div>
+                    </div>
+
+                    <div class="subnav-hover">
+                        <a href="/sub_category/leder-jackets">Sommer Dresses</a>
+                        <a href="/sub_category/winter-jackets">Party Dresses</a>
+                    </div>
+                </li>
+                <li class="nav-hover">
+                    <div class="resp-nav-wrap">
+                        <div>
+                            <a href="/category/trousersjeans/" class="nav-hover-btn">
+                                Trousers&Jeans
+                            </a>
+                        </div>
+                        <div><span class="nav-icon lnr lnr-chevron-down"></span></div>
+                    </div>
+                    <div class="subnav-hover">
+                        <a href="/sub_category/leder-jackets">Trousers</a>
+                        <a href="/sub_category/winter-jackets">Jeans</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="navbar-tools">
+                <div class="user-tool">
+                    {% if not request.user.is_authenticated %}
+
+                    <a href="{% url 'login'%}"><span class="lnr lnr-user nav-bar-line-1" title="Login"></span>
+                        <span class="nav-bar-line-2">Login
+                        <span class="lnr lnr-chevron-down"></span>
+                        </span></a>
+                    {% else %}
+                    <a href="{% url 'account'%}"><span class="lnr lnr-user nav-bar-line-1" title="My account"></span>
+                        <span class="nav-bar-line-2">Account
+                        <span class="lnr lnr-chevron-down"></span>
+                    </span></a>
+                    {% endif %}
+                </div>
+                <div class="user-tool">
+                    <a href="#"><span class="lnr lnr-heart nav-bar-line-1" title="Wish list"></span>
+                        <span class="nav-bar-line-2">Wish list
+                        <span class="lnr lnr-chevron-down"></span>
+                    </span></a>
+                </div>
+                <!--<div class="basket-info">-->
+                <!---->
+                <!--<div class="drop-basket-li">-->
+                <div class="user-tool">
+                    <a href="{% url 'cart' %}" class="drop-tog"><span
+                            class="lnr lnr-cart nav-bar-line-1">
+                                <span class="basket" id="cart-total-amount" style="float:right;">{{ items }}</span>
+                            </span>
+                        <span class="nav-bar-line-2">Basket</span></a>
+                </div>
+                <!--товары в выпадающей корзине-->
+                <ul id="dropdownMenuBasket" class="dropdown-menu">
+                    <li>
+                        <div class="dropdown-item-basket-container">
+                            <div class="dropdown-item-basket-img">
+                                <img id="curent-img" src="#">
+                            </div>
+                            <div class="dropdown-item-basket-info">
+                                <p id="bask-it-title"></p>
+                                <p id="bask-it-pr"></p>
+                                <p id="bask-it-size"></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="resp-nav">
+            <a href="#"><span id="icon-resp-nav" class="lnr lnr-menu"
+                              style="font-size:1.8em;"></span></a>
+        </div>
+        {% if request.user.is_superuser %}
+        <div class="sup-us-pan">
+            <a href="/admin">Admin Panel</a>
+        </div>
+        {% endif %}
+
+    </div>
+</nav>
+<!--</div>-->
+
+<!-- Page Content -->
+<div class="content-wrapper flex-col">
+    <!--block content для отображения части страницы и правильного наследования-->
+    {% block content %}
+    <div class="content">
+        <div class="page-cont page-grid-full">
+            <!--<button class="prev"><</button>-->
+                <!--<button class="next">></button>-->
+            <!--&lt;!&ndash;слайдер&ndash;&gt;-->
+            <!--<div class="promo-slider-wrapper">-->
+                <!--<div class="promoslider flex-row">-->
+                    <!--{% for i in promotionimgs %}-->
+                    <!--<div class="slide-item"><img class="slide-image" src="{{ i.image.url }}" alt=""></div>-->
+                    <!--{% endfor %}-->
+                <!--</div>-->
+
+            <!--</div>-->
+            <br>
+            <div class="content content-flow">
+                <!--цикл для отображения товаров-->
+                {% for product in products %}
+                <div class="page-cont page-grid-quarter">
+                    <div class="thumbnail">
+                        <a href="{{ product.get_absolute_url }}">
+                            {% for img in product.images.all|slice:":1" %}
+                            <div class="item-image">
+                                <img src="{{ img.image.url }}">
+                            </div>
+                            {% endfor %}
+                        </a>
+                        <div class="info-container">
+                            <div class="item-label">
+                                <div class="item-brand-name">
+                                    {{ product.brand }}
+                                </div>
+                                <div class="item-article-name">
+                                    {{ product.title }}
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <div class="item-original-price">
+                                    {{ product.price }} €
+                                </div>
+                                <div class="item-sale-price">
+                                    <!--скидочная цена--> SALE
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+    {% endblock content %}
+</div>
+ /.container
+
+<div class="container">
+
+<hr>
+
+<!-- Footer -->
+<footer>
+<div class="content">
+<div class="page-cont page-full">
+<p>Copyright &copy; My Website 2018</p>
+</div>
+</div>
+</footer>
+
+</div>
+ /.container
+
+</body>
+</html>
+

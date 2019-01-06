@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div id="checkoutBasket">
+    <h3>Your order</h3>
+    <table class="table" style="margin-top:3vh;">
+        <thead>
+        <tr>
+            <th>Items</th>
+            <th></th>
+            <th>Qty</th>
+            <th>Size</th>
+            <th>Order Value</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items_of_cart %}
+        <tr>
+            <td class="colum-image">
+                {% for img in item.product.images.all|slice:":1" %}
+                <div class="basket-img">
+                    <a href="{{ item.product.get_absolute_url }}"> <img src="{{ img.image.url }}" style="width:7vw;"></a>
+                </div>
+                {%endfor%}
+            </td>
+            <td class="colum-description" style="text-align:left; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">
+                <div>
+                    <h6>{{item.product.brand}}</h6>
+                    <p class="item-article-name">{{item.product.title}}</p>
+                </div>
+            </td>
+            <td>
+                {{item.amount}}
+            </td>
+            <td>{{item.size}}</td>
+            <td>
+                <div>
+                    {{item.item_total_price }}
+                </div>
+            </td>
+            <td>
+                <div><p>Total: {{summ}} EUR</p></div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'create_order' %}" class="pull-right">
+        <button class="btn btn-success">GO TO CHECKOUT</button>
+    </a>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<!--django-crispy-forms библиотека которая помогает привести все формы к одному стилю в данном случае bootstrap
+при этом в settings.py добавляем настройку CRISPY_TEMPLATE_PACK = 'bootstrap3' и 'crispy_forms' в INSTALLED_APPS-->
+{% block content %}
+<form action="{% url 'make_order' %}" method="post" >
+    <!--должно быть в форме с методом Post если это форма для внутреннего URL-->
+    {% csrf_token %}
+    <!--так можно просто отобразить форму #{{form|crispy }}-->
+    <div class="col-sm-4">
+        {{form.first_name|as_crispy_field }}
+    </div>
+    <div class="col-sm-4">
+        {{form.last_name|as_crispy_field }}
+    </div>
+    <div class="col-sm-4">
+        {{form.phone|as_crispy_field }}
+    </div>
+    {{ form.email|as_crispy_field }}
+    {{ form.buying_type|as_crispy_field }}
+    {{ form.address|as_crispy_field }}
+    {{ form.date|as_crispy_field }}
+    {{ form.comments|as_crispy_field }}
+    <input type="submit" class="btn btn-success" value="CHECKOUT">
+
+</form>
+
+<script src='{% static "js/jquery.js" %}'></script>
+<script>
+    $(document).ready(function(){
+        $('#div_id_address').css('display', 'none');
+        $('#id_buying_type').on('click', function(){
+            var buying_type = $(this).val();
+            if (buying_type == 'Delivery'){
+                $('#div_id_address').css('display', 'block');
+            } else {
+                $('#div_id_address').css('display', 'none');
+                };
+        });
+    });
+
+</script>
+{% endblock content %}

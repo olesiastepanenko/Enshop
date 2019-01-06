@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h3 class="text-center">Welcome to your account, {{request.user}} </h3>
+<div class="account-table">
+    <h4 class="text-center">Yours orders</h4>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Order Number</th>
+            <th>Date</th>
+            <th>Order Status</th>
+            <th>Order Total</th>
+            <th>Order Details</th>
+            <th></th>
+        </tr>
+        </thead>
+        {% for item in order %}
+        <tbody>
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.date}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.total}} EUR</td>
+            <td></td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+</div>
+
+
+{% endblock content %}
