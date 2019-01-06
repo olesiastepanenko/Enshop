@@ -79,10 +79,10 @@ function myCarousel(container){
             visible: 1,
             rotateBy: 1,
             speed: 1000,
-            btnNext: '.next',
-            btnPrev: '.prev',
+            btnNext: '.promo-slider-wrapper a.next',
+            btnPrev: '.promo-slider-wrapper a.prev',
             auto: null,
-            backSlide: true
+            backSlide: false
         };
         return container.each(function(){
             var $promoslider = container.children(':first');
@@ -91,7 +91,7 @@ function myCarousel(container){
             var running = false;
             var intID = null;
             var sliderWidth = $('.promo-slider-wrapper').width();
-            $('.slide-item').css({
+            $('.slide-item img.slide-image').css({
                 'width': sliderWidth,
             });
 			container.css({
@@ -104,6 +104,7 @@ function myCarousel(container){
 				'width': 9999 + 'px',
 				'left': 0
 			});
+
 			function slide(dir) {
 			    var direction = !dir ? -1 : 1;
 			    var leftIndent = 0;
@@ -112,63 +113,45 @@ function myCarousel(container){
 			        if (intID) {
 						window.clearInterval(intID);
 						}
-						if (!dir) { // если мы мотаем к следующему элементу (так по умолчанию)
-						//вставляем после последнего элемента карусели
-						//клоны стольких элементов, сколько задано
-						//в параметре rotateBy (по умолчанию задан один элемент)
+						if (!dir) {
 						    $promoslider.children(':last').after($promoslider.children().slice(0, settings.rotateBy).clone(true));
 						} else {
-						// если мотаем к предыдущему элементу
-						/*
-						* вставляем перед первым элементом карусели
-						* клоны стольких элементов, сколько задано
-						* в параметре rotateBy (по умолчанию задан один элемент)*/
 						    $promoslider.children(':first').before($promoslider.children().slice(itemsTotal - settings.rotateBy, itemsTotal).clone(true));
-						/*
-						* сдвигаем карусель (<ul>) влево на ширину элемента,
-						* умноженную на количество элементов, заданных
-						* в параметре rotateBy (по умолчанию задан один элемент)
-						*/
 						    $promoslider.css('left', -itemWidth * settings.rotateBy + 'px');
 						}
-						/*
-					* расчитываем левое смещение
-					* текущее значение left + ширина одного элемента
-					* количество проматываемых элементов * на направление перемещения (1 или -1)*/
 					leftIndent = parseInt($promoslider.css('left')) + (itemWidth * settings.rotateBy * direction);
-                        // запускаем анимацию
                     $promoslider.animate({'left': leftIndent}, {queue: false, duration: settings.speed, complete: function() {
-                        // когда анимация закончена
-                        if (!dir) { // если мы мотаем к следующему элементу (так по умолчанию)
-                            // удаляем столько первых элементов, сколько задано в rotateBy
+                        if (!dir) {
                             $promoslider.children().slice(0, settings.rotateBy).remove();
-                            // устанавливаем сдвиг в ноль
                             $promoslider.css('left', 0);
-                        } else { // если мотаем к предыдущему элементу
-                            // удаляем столько последних элементов, сколько задано в rotateBy
+                        } else {
                             $promoslider.children().slice(itemsTotal, itemsTotal + settings.rotateBy).remove();
                         }
-                        if (settings.auto) { // если карусель должна проматываться автоматически
-                            // запускаем вызов функции через интервал времени (auto)
-                            intID = window.setInterval(function() { slide(settings.backslide); }, settings.auto);
+                        if (settings.auto) {
+                            intID = window.setInterval(function() { slide(settings.backSlide); }, settings.auto);
                         }
-                        running = false; // отмечаем, что анимация завершена
+                        running = false;
                         }});
 				}
-				return false; // возвращаем false для того, чтобы не было перехода по ссылке
+				return false;
                     }
-                    // назначаем обработчик на событие click для кнопки next
 			$(settings.btnNext).click(function() {
 				return slide(false);
 			});
-			// назначаем обработчик на событие click для кнопки previous
 			$(settings.btnPrev).click(function() {
 				return slide(true);
 			});
-			if (settings.auto) { // если карусель должна проматываться автоматически
-				// запускаем вызов функции через временной интервал
+			if (settings.auto) {
 				intID = window.setInterval(function() {
 				slide(settings.backslide); }, settings.auto);
 				}
         });
     };
+
+$(window).resize(function() {
+    var container = $('.promo-slider-wrapper');
+    console.log(sliderWidth);
+
+});
+
+

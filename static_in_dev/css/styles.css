@@ -1,3 +1,14 @@
+/* General styles */
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* --!! Navbarstyle  !!-- */
 
@@ -93,6 +104,9 @@
         margin: 9px auto;
         min-width: 40vw;
     }
+    div.promo-slider-wrapper a.prev span, div.promo-slider-wrapper a.next span {
+        display: none;
+    }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
     .page-grid-quarter {
@@ -108,7 +122,7 @@
 
 @media (min-width: 992px) {
     .site-label-cont {
-        float: left;
+        flex-grow: 1;
     }
     .site-label {
         padding: 15px 20px 15px 0;
@@ -156,6 +170,9 @@
     }
     .resp-nav a:first-child {
         display: none;
+    }
+    .nav-bar {
+        width: -moz-available;
     }
     .navbar-tools {
         min-width: 25vw;
@@ -394,11 +411,6 @@ span.nav-bar-line-1, span.basket {
 
 /* --!! Content styles !!-- */
 
-.flex-col {
-    display: flex;
-    flex-direction: column;
-}
-
 .content-wrapper {
     padding-right: 15px;
     padding-left: 15px;
@@ -490,4 +502,81 @@ span.nav-bar-line-1, span.basket {
 }
 .item-sale-price {
     color: red;
+}
+
+/* --!! Auto promo slider styles !!-- */
+
+.promo-slider-wrapper {
+    display: -webkit-box;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.promoslider {
+    flex-wrap: nowrap;
+}
+img.slide-image {
+    padding: 0 5px 0 5px;
+}
+
+
+
+
+
+/* --!! Styles for side control galerie !!-- */
+
+.car-control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 15%;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    opacity: 0.5;
+}
+.car-control.prev {
+    left: auto;
+    left: 0;
+    background-repeat: repeat-x;
+
+}
+.car-control.prev:hover {
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, .0001)));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
+    background-repeat: repeat-x;
+}
+.car-control.next {
+    left: auto;
+    right: 0;
+    background-repeat: repeat-x;
+}
+.car-control.next:hover {
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .0001)), to(rgba(0, 0, 0, .5)));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
+    background-repeat: repeat-x;
+}
+/* Prev */
+div.main-img span.lnr-chevron-left, div.promo-slider-wrapper a.prev span {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-left: 1vw;
+}
+/* Next */
+div.main-img span.lnr-chevron-right,  div.promo-slider-wrapper a.next span{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-right: 1vw;
+}
+div.main-img span.lnr, div.promo-slider-wrapper span.lnr {
+    font-size: 3em;
+    opacity: 0.8;
+    color: #f5f5f5;
+}
+div.main-img span.lnr:hover, div.promo-slider-wrapper span.lnr:hover {
+    color: #1a1a1a;
 }

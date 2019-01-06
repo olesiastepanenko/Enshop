@@ -15,7 +15,7 @@
 
     <!--  CSS -->
     <!--<link rel='stylesheet' href='{% static "css/bootstrap.css" %}'>-->
-    <link rel='stylesheet' href='{% static "css/shop-homepage.css" %}'>
+    <!--<link rel='stylesheet' href='{% static "css/shop-homepage.css" %}'>-->
     <link rel='stylesheet' href='{% static "css/styles.css" %}'>
     <link rel='stylesheet' href='{% static "css/palette.css" %}'>
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
@@ -150,26 +150,30 @@
 
     </div>
 </nav>
-<!--</div>-->
 
 <!-- Page Content -->
 <div class="content-wrapper flex-col">
-    <!--block content для отображения части страницы и правильного наследования-->
     {% block content %}
     <div class="content">
         <div class="page-cont page-grid-full">
             <!--<button class="prev"><</button>-->
-                <!--<button class="next">></button>-->
-            <!--&lt;!&ndash;слайдер&ndash;&gt;-->
-            <!--<div class="promo-slider-wrapper">-->
-                <!--<div class="promoslider flex-row">-->
-                    <!--{% for i in promotionimgs %}-->
-                    <!--<div class="slide-item"><img class="slide-image" src="{{ i.image.url }}" alt=""></div>-->
-                    <!--{% endfor %}-->
-                <!--</div>-->
-
-            <!--</div>-->
+            <!--<button class="next">></button>-->
+            <!--слайдер-->
+            <div class="promo-slider-wrapper">
+                <div class="promoslider flex-row">
+                    {% for i in promotionimgs %}
+                    <div class="slide-item"><img class="slide-image" src="{{ i.image.url }}" alt=""></div>
+                    {% endfor %}
+                </div>
+                <a class="prev car-control" href="#">
+                    <span class="lnr lnr-chevron-left"></span>
+                </a>
+                <a class="next car-control" href="#">
+                    <span class="lnr lnr-chevron-right"></span>
+                </a>
+            </div>
             <br>
+            <div id="page-width"></div>
             <div class="content content-flow">
                 <!--цикл для отображения товаров-->
                 {% for product in products %}
@@ -211,23 +215,19 @@
     </div>
     {% endblock content %}
 </div>
- /.container
 
-<div class="container">
 
 <hr>
 
 <!-- Footer -->
 <footer>
-<div class="content">
-<div class="page-cont page-full">
-<p>Copyright &copy; My Website 2018</p>
-</div>
-</div>
+    <div class="content-flow">
+        <div class="page-cont page-grid-full">
+            <p>Copyright &copy; My Website 2018</p>
+        </div>
+    </div>
 </footer>
 
-</div>
- /.container
 
 </body>
 </html>
