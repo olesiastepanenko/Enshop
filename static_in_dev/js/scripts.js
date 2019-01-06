@@ -94,15 +94,9 @@ function myCarousel(container){
             $('.slide-item img.slide-image').css({
                 'width': sliderWidth,
             });
-			container.css({
-				'position': 'relative',
-				'overflow': 'hidden',
 				//'width': settings.visible * itemWidth + 'px' // ширину контейнера ставим равной ширине всех видимых элементов
-			});
 			$promoslider.css({
-				'position': 'relative',
 				'width': 9999 + 'px',
-				'left': 0
 			});
 
 			function slide(dir) {
@@ -150,8 +144,10 @@ function myCarousel(container){
 
 $(window).resize(function() {
     var container = $('.promo-slider-wrapper');
-    console.log(sliderWidth);
-
+    var sliderWidth = $('.promo-slider-wrapper').width();
+            $('.slide-item img.slide-image').css({
+                'width': sliderWidth,
+            });
 });
 
 

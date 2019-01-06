@@ -508,11 +508,15 @@ span.nav-bar-line-1, span.basket {
 
 .promo-slider-wrapper {
     display: -webkit-box;
+    position: relative;
     width: 100%;
     margin-bottom: 30px;
+    overflow: hidden;
 }
 .promoslider {
     flex-wrap: nowrap;
+    position: relative;
+    left: 0;
 }
 img.slide-image {
     padding: 0 5px 0 5px;
