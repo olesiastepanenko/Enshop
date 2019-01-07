@@ -17,7 +17,7 @@
 /* Smartphones */
     .nav-cont {
         flex-direction: row-reverse;
-        align-items: center;
+        justify-content: right;
     }
     .site-label {
         /*position: fixed;
@@ -54,7 +54,7 @@
         font-size: 1.3em;
     }
     .nav-bar-line-2 {
-        font-size: 0.8em;
+        font-size: 0.6em;
     }
     #dropdownMenuBasket {
         width: 90vw !important;
@@ -62,14 +62,21 @@
     .page-grid-quarter {
         width: 100%;
     }
+    .flex-row {
+        flex-wrap: wrap;
+    }
+    .triger-container {
+        display: none;
+    }
+
+    .butt-container {
+        min-width: 200px;
+        padding: 2vh 0 2vh 0;
+    }
 }
 
 
 @media only screen and (max-width: 991.98px) {
-    .nav-cont {
-        flex-direction: row-reverse;
-        align-items: center;
-    }
     .site-label {
         /*position: fixed;
         right: 5px;
@@ -109,13 +116,31 @@
     }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
+    .nav-cont {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
     .page-grid-quarter {
         width: 33.333333333%;
     }
+    .flex-row {
+        flex-wrap: wrap;
+    }
+    div.triger-column-slider img.demo-img {
+        height: 15vh;
+    }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
+    .nav-cont {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
     .page-grid-quarter {
         width: 50%;
+    }
+    .flex-row {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
 }
@@ -174,12 +199,20 @@
     .nav-bar {
         width: -moz-available;
     }
-    .navbar-tools {
-        min-width: 25vw;
-    }
     .page-grid-quarter {
         width: 25%;
     }
+    /* -- Product page styles -- */
+    .col-content-wrapper {
+        min-width: 40%;
+    }
+
+    .pr-desc {
+        text-align: justify;
+        margin-left: 3vw;
+        padding: 2vh 0 2vh 0;
+    }
+
 }
 
 
@@ -196,7 +229,6 @@
 .nav-cont {
     display:flex;
     align-items: center;
-    justify-content: space-between;
     height: 60px;
     padding-top: 5px;
     padding-right: 15px;
@@ -246,8 +278,8 @@ ul.main-nav-bar {
     background-color: #10024f;
 }
 .icon-remove {
-    /*position: fixed;*/
-    float: right;
+    position: fixed;
+    /*float: right;*/
     top: 2vh;
     right: 2vw;
     cursor: pointer;
@@ -315,12 +347,14 @@ li.nav-hover:hover, li.nav-hover:hover .nav-icon {
 .navbar-tools {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: baseline;
     line-height: 44px;
     height: 44px;
     padding-right: 20px;
     z-index: 1;
+}
+.user-tool {
+    padding: 0 5px;
 }
 div.user-tool:hover a {
     color: #fff;
@@ -404,7 +438,7 @@ span.nav-bar-line-1, span.basket {
 .sup-us-pan {
         position: fixed;
         top: 0;
-        left: 0;
+        right: 0;
         color: white;
 }
 
@@ -424,10 +458,10 @@ span.nav-bar-line-1, span.basket {
 .content-wrapper:after {
     clear: both;
 }
-.content {
+/*.content {
     margin-right: -15px;
     margin-left: -15px;
-}
+}*/
 .content-flow {
     display: flow-root;
 }
@@ -583,4 +617,266 @@ div.main-img span.lnr, div.promo-slider-wrapper span.lnr {
 }
 div.main-img span.lnr:hover, div.promo-slider-wrapper span.lnr:hover {
     color: #1a1a1a;
+}
+
+
+/* -- Product page img styles -- */
+
+.col-img-galerie-carousel {
+    border: 1px solid #CCCBCE;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 hsla(0,0%,87%,.6);
+}
+.row-slider {
+    /*flex-grow: 2;
+    flex-basis: auto;
+    position: relative;*/
+    max-width: 100%;
+    overflow: hidden;
+}
+.row-slider:after {
+    content: "";
+    clear: both;
+}
+
+.main-img {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+div.main-img img {
+    width: 100%
+}
+.modal-product-galerie, .modal-tab {
+    display: none;
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    overflow: auto;
+    z-index: 1040;
+    width: 100vw;
+    height: 100%;
+    padding-top: 3vh;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+    cursor: pointer;
+}
+.remove-cont {
+    position: relative;
+}
+.triger-container {
+    max-height: 20%;
+    overflow: auto;
+}
+.triger-slider-limiter {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: auto;
+    overflow-x: scroll;
+    padding-bottom: 3vh;
+    z-index: 10;
+}
+.triger-column-slider {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    z-index: 10;
+}
+div.triger-column-slider img.demo-img {
+    margin-top: 2vh;
+    margin-right: 1vw;
+    height: 20vh;
+    cursor: pointer;
+}
+div.triger-column-slider img.active {
+    opacity: 1;
+}
+.demo-img {
+    max-width: 100%;
+    opacity: 0.6;
+}
+.demo-img:hover {
+    opacity: 1;
+}
+
+
+/* -- Product page description styles -- */
+
+.info-sec{
+    justify-content: center;
+}
+.pr-info-top-sec {
+    margin-top: 0;
+    text-align: center;
+    font-weight: bolder;
+}
+.product-price {
+    text-align: center;
+    margin: 2vh 0 2vh 0;
+}
+.v-line {
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin: 5vh 3vw 3vh 3vw;
+}
+.pr-desc {
+    text-align: justify;
+    padding: 2vh 0 2vh 0;
+}
+
+/* -- Product page dropdown Size -- */
+
+
+.dropdown-control-container {
+    position: relative;
+    -moz-box-shadow:4px 4px 4px 0px rgba(0,0,0,0.13);
+    -webkit-box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.13);
+    box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.13);
+    border-radius: 5px;
+    background-color: #fff;
+    width: 100%;
+    min-width: 200px;
+    cursor: pointer;
+}
+.dropdown-choices {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.dropdown-choices:hover {
+    background-color: #fcfcfc;
+}
+.h-text {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.h-text, .h-icon {
+    padding: 2vh 1vw 2vh 1vw;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    z-index: 1;
+    min-width: 100%;
+    margin-top: -5px;
+    box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.2);
+}
+.dropdown-content div.row-size:hover {
+    background-color: #f1f1f1;
+}
+.row-size {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2vh 2vw 2vh 2vw;
+}
+.text-cont-right {
+    width: 100%;
+    padding: 2vh 2vw 2vh 0;
+    text-align: right;
+}
+.modal-menu {
+    font-size: 1.2em;
+    color: rgb(51, 51, 51);
+}
+.modal-menu:hover , .modal-menu:focus {
+    color: rgb(51, 51, 51);
+}
+.butt-container {
+    min-width: 200px;
+    width: -moz-available;
+    width: 100%;
+}
+.basket-btn {
+    position: relative;
+    width: 100%;
+    min-width: 200px;
+    -moz-box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.28);
+    -webkit-box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.28);
+    box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.28);
+    border-radius: 5px;
+    background-color: #fa7351;
+    padding: 2vh 1vw 2vh 1vw;
+    color: #faf6f5;
+    cursor: pointer;
+}
+.basket-btn:hover {
+    background-color: #f8603a;
+}
+
+/* -- Modal styles -- */
+
+.modal-content {
+    display: block;
+    margin: auto;
+    z-index: 1041;
+}
+.modal-size-tab {
+    display: flex;
+    flex-direction: column;
+}
+.tab-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+.tab-caption {
+    border: 1px solid #10024f;
+    padding: 2vh 3vw 2vh 3vw;
+    background-color: #f2f2f2;
+}
+.tab-caption:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+.tab-caption.active {
+    background-color: #737373;
+    color: white;
+}
+.tab-content {
+    border: 1px solid #10024f;
+    margin: auto;
+}
+
+/* Animation for modal*/
+.modal-content, .modal-tab {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+div.modal-slider-control span.lnr {
+    position: fixed;
+    top: 50vh;
+    font-size: 2em;
+}
+div.modal-slider-control span.lnr:hover, div.modal-slider-control span.lnr:hover {
+    color: #f1f1f1;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+div.modal-slider-control span.prev {
+    left: 10vw;
+}
+
+div.modal-slider-control span.next {
+    right: 10vw;
 }
