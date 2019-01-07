@@ -118,7 +118,7 @@
 @media (min-width: 768px) and (max-width: 991.98px) {
     .nav-cont {
         flex-direction: row-reverse;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
     .page-grid-quarter {
         width: 33.333333333%;
@@ -252,10 +252,10 @@
 .nav-text p {
     font-size: 0.7em;
 }
-.nav-bar{
-    display: flex;
+.nav-bar {
+    /*display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between;*/
     height: 50px;
 }
 .site-label {
@@ -350,7 +350,7 @@ li.nav-hover:hover, li.nav-hover:hover .nav-icon {
     align-items: baseline;
     line-height: 44px;
     height: 44px;
-    padding-right: 20px;
+    /*padding-right: 20px;*/
     z-index: 1;
 }
 .user-tool {
