@@ -148,6 +148,7 @@ function myCarousel(container) {
 
 $(window).resize(function () {
     var sliderWidth = $('.promo-slider-wrapper').width();
+    console.log(sliderWidth)
     $('.slide-item img.slide-image').css({
         'width': sliderWidth,
     });

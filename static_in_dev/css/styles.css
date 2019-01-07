@@ -115,6 +115,10 @@
     .close-pop-up {
         display: block;
     }
+    .nav-cont {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
     .nav-icon {
         display: block;
     }
@@ -558,6 +562,8 @@ span.nav-bar-line-1, span.basket {
     overflow: hidden;
 }
 .promoslider {
+    display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
     position: relative;
     left: 0;
