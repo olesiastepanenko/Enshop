@@ -44,8 +44,8 @@
         width: 100vw;
     }
     .navbar-tools {
-        margin: 0 auto 0 40px;
-        min-width: 40vw;
+       /* margin: 0 auto 0 40px;*/
+        min-width: 30vw;
     }
     .navbar-tools div{
         padding: 3px 5px 0 7px;
@@ -108,8 +108,8 @@
         display: block;
     }
     .navbar-tools {
-        margin: 9px auto;
-        min-width: 40vw;
+       /* margin: 9px auto;
+        min-width: 40vw;*/
     }
     div.promo-slider-wrapper a.prev span, div.promo-slider-wrapper a.next span {
         display: none;
@@ -350,7 +350,7 @@ li.nav-hover:hover, li.nav-hover:hover .nav-icon {
     align-items: baseline;
     line-height: 44px;
     height: 44px;
-    /*padding-right: 20px;*/
+    padding-right: 20px;
     z-index: 1;
 }
 .user-tool {
