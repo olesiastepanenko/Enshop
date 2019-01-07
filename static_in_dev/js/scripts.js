@@ -272,6 +272,18 @@ $('div.row-size').on('click', function(){
                 $('#mod-show').addClass('active')
             });
         }
+        $(document).on('keydown', function(event){
+        if (($('#mod-show').hasClass('active')) && (event.which == 27)){
+            $('#cont-img').fadeToggle();
+            $('#mod-show').removeClass('active');
+            };
+        });
+        $('span.lnr.lnr-cross.icon-remove').on('click', function () {
+        if ($('#mod-show').hasClass('active')) {
+            $('#cont-img').fadeToggle();
+            $('#mod-show').removeClass('active');
+        };
+        });
     });
 
 //    // Turn Modal Galery
@@ -312,18 +324,9 @@ $('div.row-size').on('click', function(){
 
     // Script for close modal Img
 
-$('span.lnr.lnr-cross.icon-remove').on('click', function () {
-    console.log(this);
-    $('.modal-product-galerie').fadeToggle();
-    $('#mod-show').removeClass('active');
 
-});
 
-    $(document).on('keydown', function(event){
-        if (($('#mod-show').hasClass('active')) && (event.which == 27)){
-            $('.modal-product-galerie').fadeToggle();
-        };
-    });
+
 
     // Turn product slider galery on Touchscreen
     var touch_position;
