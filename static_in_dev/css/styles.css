@@ -31,6 +31,8 @@
         flex-direction: column;
         height: 100%;
         animation: animateleft 0.5s;
+        overflow-y: auto;
+	    -webkit-overflow-scrolling:touch;
     }
     .main-nav-bar {
         position: fixed;
@@ -89,6 +91,8 @@
         height: 100%;
         animation: animateleft 0.5s;
         background-color: #6d6d6d;
+        overflow-y: auto;
+	    -webkit-overflow-scrolling:touch;
     }
     .main-nav-bar {
         position: fixed;
@@ -110,6 +114,11 @@
     .navbar-tools {
        /* margin: 9px auto;
         min-width: 40vw;*/
+    }
+    /* -- Product page styles -- */
+    .prod-cont {
+        display: flex;
+        flex-direction: column;
     }
     div.promo-slider-wrapper a.prev span, div.promo-slider-wrapper a.next span {
         display: none;
@@ -144,7 +153,6 @@
     }
 
 }
-
 @media (min-width: 992px) {
     .site-label-cont {
         flex-grow: 1;
@@ -203,10 +211,13 @@
         width: 25%;
     }
     /* -- Product page styles -- */
+    .prod-cont {
+        display: flex;
+        flex-direction: row;
+    }
     .col-content-wrapper {
         min-width: 40%;
     }
-
     .pr-desc {
         text-align: justify;
         margin-left: 3vw;
@@ -278,8 +289,7 @@ ul.main-nav-bar {
     background-color: #10024f;
 }
 .icon-remove {
-    position: fixed;
-    /*float: right;*/
+    float: right;
     top: 2vh;
     right: 2vw;
     cursor: pointer;
@@ -658,6 +668,7 @@ div.main-img img {
     width: 100vw;
     height: 100%;
     padding-top: 3vh;
+    padding-right: 10px;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.9);
     cursor: pointer;
