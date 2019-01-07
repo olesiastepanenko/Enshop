@@ -79,6 +79,10 @@
 
 
 @media only screen and (max-width: 991.98px) {
+    .content {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
     .site-label {
         /*position: fixed;
         right: 5px;
@@ -104,6 +108,9 @@
     }
     ul.main-nav-bar {
         min-width: 45vw;
+    }
+    .resp-nav a:first-child {
+      display: block;
     }
     .close-pop-up {
         display: block;
@@ -200,9 +207,6 @@
     }
     #dropdownMenuBasket {
         width:400px !important;
-    }
-    .resp-nav a:first-child {
-        display: none;
     }
     .nav-bar {
         width: -moz-available;
@@ -468,10 +472,6 @@ span.nav-bar-line-1, span.basket {
 .content-wrapper:after {
     clear: both;
 }
-/*.content {
-    margin-right: -15px;
-    margin-left: -15px;
-}*/
 .content-flow {
     display: flow-root;
 }
