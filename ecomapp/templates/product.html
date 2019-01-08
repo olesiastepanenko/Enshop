@@ -73,16 +73,16 @@
                         <div class="flex-row row-size">
                             <div class="pr-s" data-size="{{i.id}}">{{i.size}}</div>
                             {% for j in sizestock %}
-                            {%if i.id == j.productSize_id%}
-                            {% if j.stock == 0 %}
-                            <div>OUT OF STOCK</div>
-                            {% elif j.stock < 4 %}
-                            <div style="color:red;">Only {{j.stock}} in stock</div>
-                            {% else %}
-                            <div></div>
-                            {%endif%}
-                            <div class="pr-st-qty" data-stock="{{j.stock}}" style="display:none;"></div>
-                            {%endif%}
+                                {%if i.id == j.productSize_id%}
+                                    {% if j.stock == 0 %}
+                                        <div>OUT OF STOCK</div>
+                                    {% elif j.stock < 4 %}
+                                         <div style="color:red;">Only {{j.stock}} in stock</div>
+                                    {% else %}
+                                        <div></div>
+                                    {%endif%}
+                                <div class="pr-st-qty" data-stock="{{j.stock}}" style="display:none;"></div>
+                                {%endif%}
                             {%endfor%}
                         </div>
                         {%endif%}
@@ -135,6 +135,39 @@
 <script>
 
 
+$(document).ready(function () {
+    $('.add-to-cart').on('click', function () {
+        if ($(this).attr('data-size')) {
+            product_slug = $(this).attr('data-slug');
+            product_title = $(this).attr('data-title');
+            product_price = $(this).attr('data-price');
+            product_size = $(this).attr('data-size');
+            var cur_src = $('div.main-img img').first().attr('src');
+            data = {
+                product_slug: product_slug,
+                product_size: product_size,
+                product_title: product_title,
+                product_price: product_price,
+            };
+            $('#curent-img').attr('src', cur_src);
+            $.ajax({
+                type: 'GET',
+                url: '{% url "add_to_cart" %}',
+                data: data,
+                success: function (data) {
+                    $('#cart-total-amount').html(data.cart_total_amount);
+                    $('#bask-it-title').html(product_title);
+                    $('#bask-it-pr').html(product_price + ' EUR');
+                    $('#dropdownMenuBasket').show(500).delay(1000).fadeOut(500);
+                }
+            });
+        }
+        else {
+        console.log($(this).attr('data-size'))
+            $('div.dropdown-choices div.h-text').css('color', 'red');
+        }
+    });
+});
 
 
 

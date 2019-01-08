@@ -298,15 +298,14 @@ ul.main-nav-bar {
     font-weight: 900 !important;
 }
 .close-pop-up {
-    height: 50px;
-    padding-top: 15px;
-    padding-right: 4px;
+    min-height: 50px;
     background-color: #10024f;
 }
 .icon-remove {
     float: right;
-    top: 2vh;
-    right: 2vw;
+    /*top: 2vh;
+    right: 2vw;*/
+    padding: 2vh 1vw 0 0;
     cursor: pointer;
     color: #c1c1c1;
     font-size: 1.5em;

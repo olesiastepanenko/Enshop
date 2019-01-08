@@ -1,15 +1,16 @@
 // Script for nav-bar for Ipad and so on
 $(document).ready(function () {
     var target;
-    $('li.nav-hover a').on('click', function () {
-        target = $(this).index();
-    });
-    $('.resp-nav span').on('click', function () {
-        $('.main-nav-bar').show().css('display', 'flex');
+    var navbar = $('.main-nav-bar');
+    $('#icon-resp-nav').on('click', function () {
+        navbar.show().css('display', 'flex');
     });
     $('.close-pop-up span').on('click', function () {
-        $('.main-nav-bar').css('display', 'none');
+        navbar.css('display', 'none');
     });
+//    $('li.nav-hover a').on('click', function () {
+//        target = $(this).index();
+//    });
     $('li.nav-hover div.resp-nav-wrap').on('click', function () {
         var span = $(this).find('span');
         var subnav = $(this).next();
@@ -20,53 +21,11 @@ $(document).ready(function () {
         else {
             subnav.slideUp('slow');
             span.removeClass('lnr-chevron-up').addClass('lnr-chevron-down');
-        }
+        };
     })
 });
 
-$(document).ready(function () {
-    var icon = $('#icon-resp-nav');
-    icon.on('click', function () {
-    })
-});
-
-
-//    // скрипт для динамического изменения колличества товаров возле иконки корзины
-//$(document).ready(function () {
-//    $('.add-to-cart').on('click', function () {
-//        if ($(this).attr('data-size')) {
-//            product_slug = $(this).attr('data-slug');
-//            product_title = $(this).attr('data-title');
-//            product_price = $(this).attr('data-price');
-//            product_size = $(this).attr('data-size');
-//            var cur_src = $('div.main-img img').first().attr('src');
-//            data = {
-//                product_slug: product_slug,
-//                product_size: product_size,
-//                product_title: product_title,
-//                product_price: product_price,
-//            }
-//            $('#curent-img').attr('src', cur_src);
-//            $.ajax({
-//                type: 'GET',
-//                url: '{% url "add_to_cart" %}',
-//                data: data,
-//                success: function (data) {
-//                    $('#cart-total-amount').html(data.cart_total_amount);
-//                    $('#bask-it-title').html(product_title);
-//                    $('#bask-it-pr').html(product_price + ' EUR');
-//                    $('#dropdownMenuBasket').show(500).delay(1000).fadeOut(500);
-//                }
-//            });
-//        }
-//        else {
-//         $('div.dropdown-choices div.h-text').css('color', 'red');
-//        }
-//    });
-//});
-
-
-// Slide-promo-carousel on main Page
+// Slide-promo-Carousel on main Page
 $(document).ready(function () {
     var container = $('.promo-slider-wrapper');
     myCarousel(container);
@@ -155,54 +114,46 @@ $(window).resize(function () {
 });
 
 // скрипт для динамического изменения колличества товаров возле иконки корзины
+
+
+// script for dropdown show Size
+//$(document).ready(function () {
+//    var size_content = $(".dropdown-content");
+//    $('.dropdown-choices').on('click', function () {
+//            if (size_content.is(":hidden")) {
+//                console.log('down');
+//                size_content.slideDown("slow");
+//            }
+//            else {
+//                size_content.slideUp();
+//                console.log('up');
+//            }
+//        }
+//    );
+//});
+
 $(document).ready(function () {
-    $('.add-to-cart').on('click', function () {
-        if ($(this).attr('data-size')) {
-            product_slug = $(this).attr('data-slug');
-            product_title = $(this).attr('data-title');
-            product_price = $(this).attr('data-price');
-            product_size = $(this).attr('data-size');
-            var cur_src = $('div.main-img img').first().attr('src');
-            data = {
-                product_slug: product_slug,
-                product_size: product_size,
-                product_title: product_title,
-                product_price: product_price,
-            };
-            $('#curent-img').attr('src', cur_src);
-            $.ajax({
-                type: 'GET',
-                url: '{% url "add_to_cart" %}',
-                data: data,
-                success: function (data) {
-                    $('#cart-total-amount').html(data.cart_total_amount);
-                    $('#bask-it-title').html(product_title);
-                    $('#bask-it-pr').html(product_price + ' EUR');
-                    $('#dropdownMenuBasket').show(500).delay(1000).fadeOut(500);
-                }
-            });
+    var size_dd = $('.dropdown-choices');
+    $('.dropdown-choices').addClass('active');
+    size_dd.click(function () {
+        if (size_dd.hasClass('active')) {
+            OpenSizeDD(size_dd);
         }
-        else {
-            $('div.dropdown-choices div.h-text').css('color', 'red');
-        }
+        else {CloseSizeDD(size_dd)}
     });
 });
 
-// script for dropdown show Size
-$(document).ready(function () {
+
+function OpenSizeDD(size_dd) {
     var size_content = $(".dropdown-content");
-    $('.dropdown-choices').on('click', function () {
-            if (size_content.is(":hidden")) {
-                console.log('down');
-                size_content.slideDown("slow");
-            }
-            else {
-                size_content.slideUp();
-                console.log('up');
-            }
-        }
-    );
-});
+        size_content.slideDown("slow");
+        $('.dropdown-choices').removeClass('active');
+};
+function CloseSizeDD(size_dd) {
+    var size_content = $(".dropdown-content");
+    size_content.slideUp();
+    $('.dropdown-choices').addClass('active');
+};
 
 // choose size script
 $('div.row-size').on('click', function () {
@@ -220,6 +171,7 @@ $('div.row-size').on('click', function () {
 
 // script for fotogalerie
 
+$(document).ready(function(){
 var triggers = $('div.triger-column-slider img');
 var images = $('div.row-slider div.main-img img');
 var target;
@@ -267,6 +219,7 @@ $('div.row-slider a.prev').click(function () {
     target = $('div.triger-column-slider img.active').index();
     TurnImgSliderLeft(target);
 });
+})
 
 // Script for modal Img
 $(document).ready(function () {
