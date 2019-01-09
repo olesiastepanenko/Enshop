@@ -2,6 +2,12 @@
 
 {% load static %}
 
+{% block javascript %}
+
+
+{% endblock %}
+
+
 <!--мы отображаем все что нах-ся ВНЕ block content-->
 {% block content  %}
 <!--все что будет написано внутри этого блока будет отображаться на странице продукта-->
@@ -130,44 +136,10 @@
         </div>
     </div>
 </div>
-<script src='{% static "js/jquery.js" %}'></script>
-<script src="{% static 'js/scripts.js' %}"></script>
+<!--<script src='{% static "js/jquery.js" %}'></script>-->
+<!--<script src="{% static 'js/scripts.js' %}"></script>-->
 <script>
 
-
-$(document).ready(function () {
-    $('.add-to-cart').on('click', function () {
-        if ($(this).attr('data-size')) {
-            product_slug = $(this).attr('data-slug');
-            product_title = $(this).attr('data-title');
-            product_price = $(this).attr('data-price');
-            product_size = $(this).attr('data-size');
-            var cur_src = $('div.main-img img').first().attr('src');
-            data = {
-                product_slug: product_slug,
-                product_size: product_size,
-                product_title: product_title,
-                product_price: product_price,
-            };
-            $('#curent-img').attr('src', cur_src);
-            $.ajax({
-                type: 'GET',
-                url: '{% url "add_to_cart" %}',
-                data: data,
-                success: function (data) {
-                    $('#cart-total-amount').html(data.cart_total_amount);
-                    $('#bask-it-title').html(product_title);
-                    $('#bask-it-pr').html(product_price + ' EUR');
-                    $('#dropdownMenuBasket').show(500).delay(1000).fadeOut(500);
-                }
-            });
-        }
-        else {
-        console.log($(this).attr('data-size'))
-            $('div.dropdown-choices div.h-text').css('color', 'red');
-        }
-    });
-});
 
 
 

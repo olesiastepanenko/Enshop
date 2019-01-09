@@ -216,9 +216,6 @@
     div.subnav-hover a:hover {
         background-color: #efefef;
     }
-    #dropdownMenuBasket {
-        width:400px !important;
-    }
     .nav-bar {
         width: -moz-available;
     }
@@ -372,7 +369,7 @@ li.nav-hover:hover, li.nav-hover:hover .nav-icon {
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    line-height: 44px;
+    /*line-height: 44px;*/
     height: 44px;
     margin-bottom: 1vh;
     z-index: 1;
@@ -438,7 +435,7 @@ span.nav-bar-line-1, span.basket {
     left: auto;
     float: left;
     padding: 5px 0 5px 0;
-    margin: 0 2px 0 0;
+    margin: 0 4px 0 0;
     background-color: #10024f;
     z-index: 1000;
     text-align: left;
@@ -451,12 +448,27 @@ span.nav-bar-line-1, span.basket {
 }
 .dropdown-item-basket-container {
     display:flex !important;
+    align-items: center;
+    justify-content: space-around;
     padding: 1vh 0 0 0;
     background-color: whitesmoke;
 }
 .dropdown-item-basket-img img {
     width:10vw;
-    padding:1vh 1vw 1vh 2vw !important;
+    /*padding:6vh 1vw 1vh 2vw !important;*/
+}
+.dropdown-item-basket-info {
+    font-size: 0.7em;
+}
+.dropdown-item-basket-info div {
+    padding: 2vh 2vw;
+
+
+}
+#bask-it-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Admin panel */
