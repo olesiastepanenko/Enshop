@@ -89,6 +89,9 @@ function openSideMobileNavBar(){
     $('.cat-menu-item').on('click', controlSideMobileNavBar);
 }
 function closeSideMobileNavBar() {
+    if ($(".cat-menu-item.active" ).length > 0) {
+        $(".cat-menu-item.active" ).removeClass('active').next().hide();
+    }
     document.getElementById('side-pan-menu').style.display = "none";
 //     $('#nav-pan-item-menu').css('display', 'none');
 };
