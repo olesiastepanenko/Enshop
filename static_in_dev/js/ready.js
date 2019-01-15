@@ -12,6 +12,8 @@ $(document).ready(function () {
 
     setupAddToShoppingCart();
 
+    setupSizeGuide();
+
     console.info("setup ready.js OK");
 
 });
@@ -19,6 +21,7 @@ $(document).ready(function () {
 $(document).on('keydown', function (event) {
 
     closeModalImgESC(event);
+    closeSizeGuideESC(event);
 });
 
 $(window).resize(function () {
@@ -33,7 +36,6 @@ function setupDropDownSizeChoices(){
     console.log('Whait for Size choose');
     $('div.row-size').on('click', сhooseSize);
 }
-
 function сontrolOfDropDownSizeChoises(){
     console.group("Event onClicks from dropdown-choices");
     var size_content = $(".dropdown-content");
@@ -49,7 +51,6 @@ function сontrolOfDropDownSizeChoises(){
     }
     console.groupEnd('The END of Event for Dropdown Size');
 }
-
 function сhooseSize(){
     console.log('Dropdown Size Im ready for Size selection');
     // Hover row with size and qty of Stock
@@ -64,7 +65,7 @@ function сhooseSize(){
         console.info('Size-ID assigned to Add-to-cart button ');
         $(".dropdown-content").slideUp();
         $('#bask-it-size').html('SIZE ' + size);
-        console.info('Busket Dropdown div.dropdown-item-basket-info has got info about selected Size =', size)
+        console.info('Busket Dropdown div.dropdown-product-basket-info has got info about selected Size =', size)
         $('div.dropdown-choices div.h-text').html(size);
         console.info('Selected Size was appeared on div.dropdown-choices')
         console.log('Size is selected');
@@ -73,67 +74,57 @@ function сhooseSize(){
 }
 
 
-
 // Script for mobile devices Nav Panel
 function setupSideNavBarForSmallDevices(){
         console.info("Setup Event Lisener Side NavBar for mobile devices onClisk...");
-        $('#icon-resp-nav').on('click', openSideMobileNavBar);
-        $('.close-pop-up span').on('click', closeSideMobileNavBar);
+//        document.getElementById('mob-dev-butt-icon').addEventListener("click", openSideMobileNavBar);
+        $('#mob-dev-butt-icon').on('click', openSideMobileNavBar);
+//        document.getElementById('close-side-nav').addEventListener("click", closeSideMobileNavBar);
+        $('#close-side-nav').on('click', closeSideMobileNavBar);
 }
-
 function openSideMobileNavBar(){
-        var navbar = $('.main-nav-bar');
-        navbar.show().css('display', 'flex');
-        console.info('Side Mobile NavBar is opened OK');
-        $('li.nav-hover div.resp-nav-wrap').on('click', controlSideMobileNavBar);
-    };
-
+    var nav = document.getElementById('side-pan-menu');
+    nav.style.display = "flex"
+    $('.nav-pan-item-menu').css('display', 'flex');
+    $('.cat-menu-item').on('click', controlSideMobileNavBar);
+}
 function closeSideMobileNavBar() {
-     var navbar = $('.main-nav-bar');
-     navbar.css('display', 'none');
-// тут исправить БАГ когда закрываем нав закрываем и субнавы
-     console.info('Side Mobile NavBar is closed OK');
+    document.getElementById('side-pan-menu').style.display = "none";
+//     $('#nav-pan-item-menu').css('display', 'none');
 };
-
 function controlSideMobileNavBar() {
-    var navbar = $('.main-nav-bar');
-        var span = $(this).find('span');
-        var subnav = $(this).next();
-        if ($('.subnav-hover').is(":visible")) {
-            openedSubnav = $('.subnav-hover[style*="display: block"]');
-            console.info('PREVDiv is', openedSubnav.prev());
-            console.info('PREVSubnav is', subnav.prev());
-            findIconUP = $('.nav-icon.lnr-chevron-up');
-            openedSubnav.css('display', 'none');
-            console.info('Preview subnav is closed OK');
-            findIconUP.removeClass('lnr-chevron-up').addClass('lnr-chevron-down');
-            console.trace('openedDiv', openedSubnav);
-            subnav.slideDown('slow');
-            console.log('NEXT Subnav is opened!! OK');
-            // тут исправить БАГ когда клацаем на ту же категорию оно не должно опять выезжать
-        }
-        else {
-            console.trace('All is close, than I will open this');
-            subnav.slideDown('slow');
-            span.removeClass('lnr-chevron-down').addClass('lnr-chevron-up');
-            console.info('The first subnav was opened OK');
+        if ($(".cat-menu-item.active" ).length === 0) {
+            console.info('all is closed');
+            $(this).addClass('active').next().slideDown();
 
-        };
+        } else {
+            console.info('some is opened');
+            if ($(this).hasClass('active')) {
+                console.info('it curr => close');
+                $(this).removeClass('active').next().slideUp();
+            } else {console.info('it new');
+                $(".cat-menu-item.active" ).removeClass('active').next().hide();
+                console.info('old closed');
+                $(this).addClass('active').next().slideDown();
+                console.log('new opened');
+            }
+
+        }
 };
+
 
 // Scripts for Slide-promo-Carousel on main Page
 function setupMainPromoFotoCarousel() {
-    var container = $('.promo-slider-wrapper');
+    var container = $('.promo-slider-container');
     myCarousel(container);
 };
-
 function myCarousel(container) {
     var settings = {
         visible: 1,
         rotateBy: 1,
         speed: 1000,
-        btnNext: '.promo-slider-wrapper a.next',
-        btnPrev: '.promo-slider-wrapper a.prev',
+        btnNext: '.promo-slider-container a.next',
+        btnPrev: '.promo-slider-container a.prev',
         auto: null,
         backSlide: false
     };
@@ -143,7 +134,7 @@ function myCarousel(container) {
         var itemsTotal = $promoslider.children().length;
         var running = false;
         var intID = null;
-        var sliderWidth = $('.promo-slider-wrapper').width();
+        var sliderWidth = $('.promo-slider-container').width();
         $('.slide-item img.slide-image').css({
             'width': sliderWidth,
         });
@@ -200,9 +191,8 @@ function myCarousel(container) {
         }
     });
 }
-
 function changePromoCaruselSizeIfWindowResized() {
-    var sliderWidth = $('.promo-slider-wrapper').width();
+    var sliderWidth = $('.promo-slider-container').width();
         console.log('New width for Promo Carousel' , sliderWidth);
         $('.slide-item img.slide-image').css({
             'width': sliderWidth,
@@ -224,12 +214,11 @@ function setupProductImgGalery() {
     if (windowSize > 480) {
         console.info('window is more than 480 px, ready open Modal IMG');
         $('div.main-img img').on('click', openModalProductImg);
-        $('span.lnr.lnr-cross.icon-remove').on('click', closeModalProductImg);
+        $('#closyaka_product').on('click', closeModalProductImg);
     }
 
 
 };
-
 function selectGaleryPreviewImg () {
     var target;
     if (!$(this).hasClass('active')) {
@@ -238,7 +227,6 @@ function selectGaleryPreviewImg () {
         sliderImgResponse(target);
     }
 };
-
 function sliderImgResponse(target) {
     var images = $('div.row-slider div.main-img img');
     var triggers = $('div.triger-column-slider img');
@@ -246,7 +234,6 @@ function sliderImgResponse(target) {
     triggers.removeClass('active').eq(target).addClass('active');
     console.info('New Img is showed OK');
 }
-
 function turnProductImgGaleryRight() {
     var triggers = $('div.triger-column-slider img');
     var lastElem;
@@ -263,7 +250,6 @@ function turnProductImgGaleryRight() {
         sliderResponse(target);
     }
 };
-
 function turnProductImgGaleryLeft() {
 var triggers = $('div.triger-column-slider img');
     var lastElem;
@@ -274,20 +260,17 @@ var triggers = $('div.triger-column-slider img');
     sliderImgResponse(target);
     console.info('Img was turned left OK');
 };
-
 function openModalProductImg() {
    $('#cont-img').css('display', 'block');
    imgSrc = $(this).attr('src');
    $('#mod-show').attr('src', imgSrc);
    $('#mod-show').addClass('active');
 };
-
 function closeModalProductImg() {
     $('#cont-img').fadeToggle();
     $('#mod-show').removeClass('active');
     console.info('Modal Img was closed');
 };
-
 function closeModalImgESC(event) {
     if (($('#mod-show').hasClass('active')) && (event.which == 27)) {
         $('#cont-img').fadeToggle();
@@ -297,16 +280,11 @@ function closeModalImgESC(event) {
 };
 
 
-
-
-
-
 // Script add to cart and show shoppingCart qty next to Cart Icon
 function setupAddToShoppingCart (){
     console.info("Setup Event Lisener Add to Cart Button onClisk...");
     $('.add-to-cart').on('click', addToCartAndShowQty);
 };
-
 function addToCartAndShowQty(){
     if ($(this).attr('data-size')) {
             product_slug = $(this).attr('data-slug');
@@ -325,7 +303,7 @@ function addToCartAndShowQty(){
                 product_title: product_title,
                 product_price: product_price,
             };
-            $('#curent-img').attr('src', cur_src);
+            $('#curent-product-img').attr('src', cur_src);
             console.log('add our src to DD busket');
             console.log('Ready for Ajax');
             $.ajax({
@@ -334,10 +312,10 @@ function addToCartAndShowQty(){
                 data: data,
                 success: function (data) {
                     console.log('It was success');
-                    $('#cart-total-amount').html(data.cart_total_amount);
+                    $('#basket-total-amount').html(data.cart_total_amount);
                     $('#bask-it-title').html(product_title);
                     $('#bask-it-pr').html('PRICE ' + product_price + ' EUR');
-                    $('#dropdownMenuBasket').show(500).delay(1000).fadeOut(500);
+                    $('#dropdown-product-basket').show(500).delay(1000).fadeOut(500);
                 }
             });
         }
@@ -346,4 +324,49 @@ function addToCartAndShowQty(){
             $('div.dropdown-choices div.h-text').css('color', 'red');
         }
 };
+
+
+// Script for modal Size guide with resposive tabs
+function setupSizeGuide () {
+    $('a.modal-menu').on('click', openSizeGuide);
+    $('#size-guide .icon-close').on('click', closeSizeGuide)
+}
+function openSizeGuide() {
+    $('#size-guide').css('display', 'block');
+    $('#size-guide').addClass('active');
+    console.info('Size guide is opened OK');
+    controlSizeGuide();
+}
+function closeSizeGuide () {
+    $('#size-guide').css('display', 'none');
+    console.info('Size guide was closed');
+}
+function closeSizeGuideESC(event) {
+    if (($('#size-guide').hasClass('active')) && (event.which == 27)) {
+        $('#size-guide').css('display', 'none');
+        $('#size-guide').removeClass('active');
+        console.info('Size Guide was closed with keydown ESC');
+    }
+}
+function controlSizeGuide() {
+    var tablink = $('div.tab-caption');
+    var tabcont = $('div.tab-content');
+    var target;
+
+    tablink.first().addClass('active');
+    tabcont.hide().first().show();
+
+    function tabResponce(target) {
+        tabcont.fadeOut(0).eq(target).fadeIn(0);
+        tablink.removeClass('active').eq(target).addClass('active');
+    }
+
+    tablink.click(function () {
+        if (!$(this).hasClass('active')) {
+            target = $(this).index();
+            tabResponce(target);
+        }
+     });
+}
+
 

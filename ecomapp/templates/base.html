@@ -38,113 +38,122 @@
 
 <body>
 <!-- Navigation -->
-<nav class="main-nav-bar-wrapper">
-    <div class="nav-cont">
-        <div class="site-label-cont">
-            <a class="site-label nav-text" href="/">Ecom Shop</a>
+<!--<div >-->
+    <!--<ul class="navigation-panel">-->
+
+    <!--</ul>-->
+    <!--<div class="navigation-panel-item-logo"></div>-->
+    <!--<div class="navigation-panel-imem-menu">-->
+        <!--<ul class="category-menu">-->
+            <!--<li class="category-menu-item">-->
+                <!--<ul class="sub-category-menu">-->
+                    <!--<li class="sub-category-menu-item">-->
+                        <!--some content-->
+                    <!--</li>-->
+                    <!--<li class="sub-category-menu-item">-->
+
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li class="category-menu-item">-->
+
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div class="navigation-panel-imem-tools">-->
+
+    <!--</div>-->
+<!--</div>-->
+
+<nav class="nav">
+    <div class="nav-pan">
+        <div class="nav-pan-item-logo">
+            <a class="site-logo nav-text" href="/">Ecom Shop</a>
         </div>
-        <!--<div class="nav-bar">-->
-            <ul class="main-nav-bar">
-                <li class="close-pop-up"><span class="lnr lnr-cross icon-remove"></span></li>
-                <li class="nav-hover">
-                    <div class="resp-nav-wrap">
-                        <div>
-                            <a href="/category/jackets/" class="nav-hover-btn">
-                                Jackets
-                            </a>
-                        </div>
-                        <div><span class="nav-icon lnr lnr-chevron-down"></span></div>
-                    </div>
-                    <div class="subnav-hover">
+            <ul class="nav-pan-item-menu" id="side-pan-menu">
+                <li class="menu-close-butt"><span id="close-side-nav" class="lnr lnr-cross icon-close"></span></li>
+                <li class="cat-menu">
+                    <span class="cat-menu-item">
+                            <a href="/category/jackets/" class="menu-item-btn">
+                                Jackets</a>
+                            <span class="nav-icon lnr lnr-chevron-down"></span>
+                    </span>
+                    <div class="sub-cat-menu-item">
                         <a href="/sub_category/leder-jackets">Leder Jackets</a>
                         <a href="/sub_category/winter-jackets">Winter Jackets</a>
                     </div>
                 </li>
-                <li class="nav-hover">
-                    <div class="resp-nav-wrap">
-                        <div>
-                            <a href="/category/dresses/" class="nav-hover-btn">
-                                Dresses
-                            </a>
-                        </div>
-                        <div><span class="nav-icon lnr lnr-chevron-down"></span></div>
-                    </div>
-
-                    <div class="subnav-hover">
+                <li class="cat-menu">
+                    <span class="cat-menu-item">
+                            <a href="/category/dresses/" class="menu-item-btn">
+                                Dresses</a>
+                        <span class="nav-icon lnr lnr-chevron-down"></span>
+                </span>
+                    <div class="sub-cat-menu-item">
                         <a href="/sub_category/sommer-dresses">Sommer Dresses</a>
                         <a href="/sub_category/party-dresses">Party Dresses</a>
                     </div>
                 </li>
-                <li class="nav-hover">
-                    <div class="resp-nav-wrap">
-                        <div>
-                            <a href="/category/trousersjeans/" class="nav-hover-btn">
-                                Trousers&Jeans
-                            </a>
-                        </div>
-                        <div><span class="nav-icon lnr lnr-chevron-down"></span></div>
-                    </div>
-                    <div class="subnav-hover">
+                <li class="cat-menu">
+                    <span class="cat-menu-item">
+                            <a href="/category/trousersjeans/" class="menu-item-btn">
+                                Trousers&Jeans</a>
+                        <span class="nav-icon lnr lnr-chevron-down"></span>
+                    </span>
+                    <div class="sub-cat-menu-item">
                         <a href="/sub_category/trousers">Trousers</a>
                         <a href="/sub_category/jeans">Jeans</a>
                     </div>
                 </li>
             </ul>
-            <div class="navbar-tools">
+            <div class="nav-pan-item-tools">
                 <div class="user-tool">
                     {% if not request.user.is_authenticated %}
 
-                    <a href="{% url 'login'%}"><span class="lnr lnr-user nav-bar-line-1" title="Login"></span>
-                        <span class="nav-bar-line-2">Login
+                    <a href="{% url 'login'%}"><span class="lnr lnr-user user-tool-line-1" title="Login"></span>
+                        <span class="user-tool-line-2">Login
                         <span class="lnr lnr-chevron-down"></span>
                         </span></a>
                     {% else %}
-                    <a href="{% url 'account'%}"><span class="lnr lnr-user nav-bar-line-1" title="My account"></span>
-                        <span class="nav-bar-line-2">Account
+                    <a href="{% url 'account'%}"><span class="lnr lnr-user user-tool-line-1" title="My account"></span>
+                        <span class="user-tool-line-2">Account
                         <span class="lnr lnr-chevron-down"></span>
                     </span></a>
                     {% endif %}
                 </div>
                 <div class="user-tool">
-                    <a href="#"><span class="lnr lnr-heart nav-bar-line-1" title="Wish list"></span>
-                        <span class="nav-bar-line-2">Wish list
+                    <a href="#"><span class="lnr lnr-heart user-tool-line-1" title="Wish list"></span>
+                        <span class="user-tool-line-2">Wish list
                         <span class="lnr lnr-chevron-down"></span>
                     </span></a>
                 </div>
-                <!--<div class="basket-info">-->
-                <!---->
-                <!--<div class="drop-basket-li">-->
                 <div class="user-tool">
-                    <a href="{% url 'cart' %}" class="drop-tog"><span
-                            class="lnr lnr-cart nav-bar-line-1">
-                                <span class="basket" id="cart-total-amount" style="float:right;">{{ items }}</span>
+                    <a href="{% url 'cart' %}"><span
+                            class="lnr lnr-cart user-tool-line-1">
+                                <span class="basket" id="basket-total-amount" style="float:right;">{{ items }}</span>
                             </span>
-                        <span class="nav-bar-line-2">Basket</span></a>
+                        <span class="user-tool-line-2">Basket</span></a>
                 </div>
                 <!--товары в выпадающей корзине-->
-                <ul id="dropdownMenuBasket" class="dropdown-menu">
-                    <li>
-                        <div class="dropdown-item-basket-container">
-                            <div class="dropdown-item-basket-img">
-                                <img id="curent-img" src="#">
+                <ul id="dropdown-product-basket">
+                        <li class="dropdown-product-basket-container">
+                            <div class="dropdown-product-basket-img">
+                                <img id="curent-product-img" src="#">
                             </div>
-                            <div class="dropdown-item-basket-info">
+                            <div class="dropdown-product-basket-info">
                                 <div id="bask-it-title"></div>
                                 <div id="bask-it-pr"></div>
                                 <div id="bask-it-size"></div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
                 </ul>
-                <!--</div>-->
             </div>
-        <!--</div>-->
-        <div class="resp-nav">
-            <a href="#"><span id="icon-resp-nav" class="lnr lnr-menu"
+        <div class="nav-pan-mob-dev-butt">
+            <a href="#"><span id="mob-dev-butt-icon" class="lnr lnr-menu"
                               style="font-size:1.8em;"></span></a>
         </div>
         {% if request.user.is_superuser %}
-        <div class="sup-us-pan">
+        <div class="admin-pan-button">
             <a href="/admin">Admin Panel</a>
         </div>
         {% endif %}
@@ -157,7 +166,7 @@
     {% block content %}
     <div class="content">
         <div class="page-cont page-grid-full">
-            <div class="promo-slider-wrapper">
+            <div class="promo-slider-container">
                 <div class="promoslider">
                     {% for i in promotionimgs %}
                     <div class="slide-item"><img class="slide-image" src="{{ i.image.url }}" alt=""></div>
@@ -171,7 +180,6 @@
                 </a>
             </div>
             <br>
-            <div id="page-width"></div>
             <div class="content content-flow">
                 <!--цикл для отображения товаров-->
                 {% for product in products %}

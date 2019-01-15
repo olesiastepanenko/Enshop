@@ -88,39 +88,6 @@
 //    }
 //}
 
-// Script for modal Size guide with resposive tabs
-
-//$(document).ready(function () {
-//    $('a.modal-menu').on('click', function () {
-//        $('#size-guide').css('display', 'block');
-//
-//        var tablink = $('div.tab-caption');
-//        var tabcont = $('div.tab-content');
-//        var target;
-//
-//        tablink.first().addClass('active');
-//        tabcont.hide().first().show();
-//
-//        function tabResponce(target) {
-//            tabcont.fadeOut(0).eq(target).fadeIn(0);
-//            tablink.removeClass('active').eq(target).addClass('active');
-//        }
-//
-//        tablink.click(function () {
-//            if (!$(this).hasClass('active')) {
-//                target = $(this).index();
-//                tabResponce(target);
-//            }
-//        });
-//    });
-//});
 
 
-// Script for close modal Size guide Tab
-
-//$(document).ready(function () {
-//    $('div.modal-tab div.remove-cont .icon-remove').on('click', function () {
-//        $('#size-guide').css('display', 'none')
-//    });
-//});
 
