@@ -84,7 +84,7 @@ function setupSideNavBarForSmallDevices(){
 }
 function openSideMobileNavBar(){
     var nav = document.getElementById('side-pan-menu');
-    nav.style.display = "flex"
+    nav.style.display = "flex";
     $('.nav-pan-item-menu').css('display', 'flex');
     $('.cat-menu-item').on('click', controlSideMobileNavBar);
 }
@@ -92,8 +92,11 @@ function closeSideMobileNavBar() {
     if ($(".cat-menu-item.active" ).length > 0) {
         $(".cat-menu-item.active" ).removeClass('active').next().hide();
     }
-    document.getElementById('side-pan-menu').style.display = "none";
-//     $('#nav-pan-item-menu').css('display', 'none');
+//    document.getElementById('side-pan-menu').style.display = "none";
+     $('#side-pan-menu').removeAttr('style');
+
+     console.info('hided');
+//     .css('display', 'none');
 };
 function controlSideMobileNavBar() {
         if ($(".cat-menu-item.active" ).length === 0) {
