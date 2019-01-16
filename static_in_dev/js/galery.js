@@ -15,8 +15,8 @@ function init() {
 //var touchStartX;
 console.info('Wait for touch');
   document.getElementById("pr-galery").addEventListener("touchstart", xOnTouchStart);
-  document.addEventListener("touchend", xOnTouchEnd);
-  document.addEventListener("touchcancel", xOnTouchEnd);
+  document.getElementById("pr-galery").addEventListener("touchend", xOnTouchEnd);
+  document.getElementById("pr-galery").addEventListener("touchcancel", xOnTouchEnd);
 
 };
 
