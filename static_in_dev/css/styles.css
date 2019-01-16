@@ -21,10 +21,6 @@
 
     }
     .site-logo {
-        /*position: fixed;
-        right: 5px;
-        padding: 15px 0 15px 0;*/
-
         line-height: 20px;
     }
     .nav-pan-item-menu {
@@ -65,11 +61,21 @@
     #dropdown-product-basket {
         width: 90vw !important;
     }
+    .content-wrapper {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
     .page-grid-quarter {
         width: 100%;
     }
+    .col-img-galerie-carousel {
+        border: none !important;
+    }
     .flex-row {
         flex-wrap: wrap;
+    }
+    div.main-img span.lnr-chevron-right, div.main-img span.lnr-chevron-left {
+        display: none !important;
     }
     .triger-container {
         display: none;

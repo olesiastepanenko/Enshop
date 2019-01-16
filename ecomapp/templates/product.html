@@ -2,23 +2,13 @@
 
 {% load static %}
 
-{% block javascript %}
-
-
-{% endblock %}
-
-
-<!--мы отображаем все что нах-ся ВНЕ block content-->
 {% block content  %}
-<!--все что будет написано внутри этого блока будет отображаться на странице продукта-->
 <div>
     <div class="content-wrapper prod-cont">
         <div class="col-content-wrapper">
             <div class="col-img-galerie-carousel">
                 <div class="row-slider">
-                    <!--<div class="main-img" ontouchstart="turn_start(event);" ontouchmove="check_direction(event);"-->
-                         <!--ontouchend="turn_page(event);">-->
-                    <div class="main-img">
+                    <div class="main-img" id="pr-galery">
                         {% for img in product.images.all %}
                         <img src="{{ img.image.url}}" id="mod-img-{{ img.id }}">
                         {% endfor %}
