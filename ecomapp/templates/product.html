@@ -16,8 +16,9 @@
         <div class="col-content-wrapper">
             <div class="col-img-galerie-carousel">
                 <div class="row-slider">
-                    <div class="main-img" ontouchstart="turn_start(event);" ontouchmove="check_direction(event);"
-                         ontouchend="turn_page(event);">
+                    <!--<div class="main-img" ontouchstart="turn_start(event);" ontouchmove="check_direction(event);"-->
+                         <!--ontouchend="turn_page(event);">-->
+                    <div class="main-img">
                         {% for img in product.images.all %}
                         <img src="{{ img.image.url}}" id="mod-img-{{ img.id }}">
                         {% endfor %}
@@ -136,14 +137,7 @@
         </div>
     </div>
 </div>
-<!--<script src='{% static "js/jquery.js" %}'></script>-->
-<!--<script src="{% static 'js/scripts.js' %}"></script>-->
-<script>
 
-
-
-
-</script>
 
 {% endblock content %}
 

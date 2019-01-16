@@ -246,11 +246,9 @@ def change_item_amount(request):
     cart_item.item_total_price = int(amount) * Decimal(cart_item.product.price)
     cart_item.save()
     summ, items, items_of_cart = get_cart_info(cart)
-    print(summ, items, items_of_cart)
-    # cart_summ =  0.00
-    # for item in
     return JsonResponse(
         {'cart_item_amount': cart_item.amount,
+         'cart_total_amount': items,
          'item_total_price': cart_item.item_total_price,
          'cart_summ': summ})
 

@@ -143,24 +143,7 @@ ul.navbar-nav.navbar-right:hover a, ul.navbar-nav.navbar-right:hover span{
     flex-wrap: wrap;
 }
 /*!Стили для корзины*/
-#shoppingBasket td.colum-image img  {
-    width: 7vw;
-}
-#shoppingBasket td.colum-description div {
-    text-align: left;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-#shoppingBasket td.colum-description div a {
-    color: #10024f;
-    text-decoration: underline;
-}
-.delete-icon {
-}
-.basket-img img {
-    padding-right:2vw;
-}
+
 /*стили для слайдера в продуктах*/
 @media (min-width: 1200px) {
     .content-wrapper {

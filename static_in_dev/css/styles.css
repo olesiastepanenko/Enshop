@@ -939,3 +939,25 @@ div.modal-slider-control span.prev {
 div.modal-slider-control span.next {
     right: 10vw;
 }
+
+/* --!! Shopping cart styles !!-- */
+
+#shoppingBasket td.colum-image img  {
+    width: 7vw;
+}
+#shoppingBasket td.colum-description div {
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+#shoppingBasket td.colum-description div a {
+    color: #10024f;
+    text-decoration: underline;
+}
+.product-delete-icon span {
+    color: red;
+}
+.basket-img img {
+    padding-right:2vw;
+}

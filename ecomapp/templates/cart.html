@@ -50,10 +50,10 @@
                 </div>
             </td>
             <td>
-                <div class="delete-icon">
+                <div class="product-delete-icon">
                     <a href="#" class="remove-from-cart" data-slug="{{item.product.slug}}"
                        data-id="{{item.product.id}}">
-                        <span class="glyphicon glyphicon-remove-sign" style="font-size:1.2em;"></span>
+                        <span class="lnr lnr-cross icon-close" style="font-size:1.2em;"></span>
                     </a>
                 </div>
             </td>
@@ -84,70 +84,71 @@
         </div>
     </div>
 
-<script src='{% static "js/jquery.js" %}'></script>
+<!--<script src='{% static "js/jquery.js" %}'></script>-->
 
 <script>
 
 
-//скрипт для сообщения что корзина пуста
-    $(document).ready(function(){
-        var cart_val = $('#cart-is-empty').attr('data-target');
-        if (cart_val == 0){
-            $('#cart-is-empty').css('display', 'block');
-        };
-    });
 
-
-
-//скрипт для динамического удаления товара
-    $(document).ready(function(){
-        $('.remove-from-cart').on('click', function(e){
-//        e функция чтобы при клике не создавалось событие клик
-            e.preventDefault()
-            product_slug = $(this).attr('data-slug')
-            item_product_id = $(this).attr('data-id')
-            data = {
-                product_slug: product_slug
-                 }
-                 $.ajax({
-                    type: 'GET',
-                    url: '{% url "remove_from_cart" %}',
-                    data: data,
-                    success: function(data){
-                        $('#cart-total-amount').html(data.cart_total_amount);
-                        $('.cart-item-' + item_product_id).css('display', 'none');
-                        $('#cart-total-summ').html('Total: ' + data.cart_summ + ' EUR');
-                        if (parseInt(data.cart_total_amount) == 0){
-                            $('#shoppingBasket').css('display', 'none');
-                            $('#cart-total-summ').css('display', 'none');
-                            $('#cart-is-empty').css('display', 'block');
-                        }
-                    }
-                });
-        });
-    });
-
-//скрипт для динамического изменения товара в корзине
-    $(document).ready(function(){
-        $('.cart-item-amount').on('click', function(){
-            amount = $(this).val();
-            item_id = $(this).attr('data-id')
-            data = {
-                amount: amount,
-                item_id: item_id
-            }
-            $.ajax({
-                type: 'GET',
-                url: '{%  url "change_item_amount" %}',
-                data: data,
-                success: function(data){
-                    $('#cart-item-total-'+item_id).html(parseFloat(data.item_total_price).toFixed(2));
-                    $('#cart-total-summ').html('Total: ' + data.cart_summ + ' EUR');
-
-                }
-             });
-        });
-    });
+////скрипт для сообщения что корзина пуста
+//    $(document).ready(function(){
+//        var cart_val = $('#cart-is-empty').attr('data-target');
+//        if (cart_val == 0){
+//            $('#cart-is-empty').css('display', 'block');
+//        };
+//    });
+//
+//
+//
+////скрипт для динамического удаления товара
+//    $(document).ready(function(){
+//        $('.remove-from-cart').on('click', function(e){
+////        e функция чтобы при клике не создавалось событие клик
+//            e.preventDefault()
+//            product_slug = $(this).attr('data-slug')
+//            item_product_id = $(this).attr('data-id')
+//            data = {
+//                product_slug: product_slug
+//                 }
+//                 $.ajax({
+//                    type: 'GET',
+//                    url: '{% url "remove_from_cart" %}',
+//                    data: data,
+//                    success: function(data){
+//                        $('#cart-total-amount').html(data.cart_total_amount);
+//                        $('.cart-item-' + item_product_id).css('display', 'none');
+//                        $('#cart-total-summ').html('Total: ' + data.cart_summ + ' EUR');
+//                        if (parseInt(data.cart_total_amount) == 0){
+//                            $('#shoppingBasket').css('display', 'none');
+//                            $('#cart-total-summ').css('display', 'none');
+//                            $('#cart-is-empty').css('display', 'block');
+//                        }
+//                    }
+//                });
+//        });
+//    });
+//
+////скрипт для динамического изменения товара в корзине
+//    $(document).ready(function(){
+//        $('.cart-item-amount').on('click', function(){
+//            amount = $(this).val();
+//            item_id = $(this).attr('data-id')
+//            data = {
+//                amount: amount,
+//                item_id: item_id
+//            }
+//            $.ajax({
+//                type: 'GET',
+//                url: '{%  url "change_item_amount" %}',
+//                data: data,
+//                success: function(data){
+//                    $('#cart-item-total-'+item_id).html(parseFloat(data.item_total_price).toFixed(2));
+//                    $('#cart-total-summ').html('Total: ' + data.cart_summ + ' EUR');
+//
+//                }
+//             });
+//        });
+//    });
 
 </script>
 
