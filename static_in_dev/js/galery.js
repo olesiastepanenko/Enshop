@@ -54,9 +54,9 @@ function xOnTouchEnd(e) {
     if (Math.abs(directionH) > 20) {
         checkHorizontalTouchDirection(directionH);
     }
-    else if (Math.abs(directionV) > 10) {
-        checkVerticalTouchDirection(directionV);
-    }
+//    else if (Math.abs(directionV) > 10) {
+//        checkVerticalTouchDirection(directionV);
+//    }
     else {return false};
 
 //    checkTouchDirection(direction);
@@ -71,17 +71,17 @@ function checkHorizontalTouchDirection(directionH) {
             console.info('to left');
         }
 }
-function checkVerticalTouchDirection(directionV) {
-    if (directionV > 0) {
-        y = Math.round(Math.abs(directionV))
-        console.info(directionV, 'scroll up', 'y', y);
-        window.scrollBy(0, -y*2);
-    } else {
-        window.scrollBy(0, Math.round(Math.abs(directionV))*2);
-        console.info(directionV, 'scroll down', Math.abs(directionV));
-    }
-
-}
+//function checkVerticalTouchDirection(directionV) {
+//    if (directionV > 0) {
+//        y = Math.round(Math.abs(directionV))
+//        console.info(directionV, 'scroll up', 'y', y);
+//        window.scrollBy(0, -y*2);
+//    } else {
+//        window.scrollBy(0, Math.round(Math.abs(directionV))*2);
+//        console.info(directionV, 'scroll down', Math.abs(directionV));
+//    }
+//
+//}
 
 // scripts for Productfotogalerie
 function setupProductImgGalery() {
