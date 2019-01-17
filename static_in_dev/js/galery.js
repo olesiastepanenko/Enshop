@@ -1,4 +1,6 @@
 // Turn product slider galery on Touchscreen
+$(window).scroll(function() { alert("Scrolled"); });
+
 var touches = [];
 var cache = new Object();
 $(document).ready(function () {
