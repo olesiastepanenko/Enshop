@@ -75,9 +75,9 @@ function checkVerticalTouchDirection(directionV) {
     if (directionV > 0) {
         y = Math.round(Math.abs(directionV))
         console.info(directionV, 'scroll up', 'y', y);
-        window.scrollBy(0, -y);
+        window.scrollBy(0, -y*2);
     } else {
-        window.scrollBy(0, Math.round(Math.abs(directionV)));
+        window.scrollBy(0, Math.round(Math.abs(directionV))*2);
         console.info(directionV, 'scroll down', Math.abs(directionV));
     }
 
