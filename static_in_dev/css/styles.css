@@ -15,6 +15,9 @@
 
 @media only screen and (max-width: 480px){
 /* Smartphones */
+    #pr-galery {
+    -webkit-overflow-scrolling: touch;
+}
     .nav-pan {
         flex-direction: row-reverse;
         justify-content: right;
@@ -731,16 +734,17 @@ div.main-img img {
     position: relative;
 }
 .triger-container {
-    max-height: 20%;
-    overflow: auto;
+    /*max-height: 20%;*/
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 .triger-slider-limiter {
     position: relative;
     margin-right: auto;
     margin-left: auto;
     width: auto;
-    overflow-x: scroll;
-    padding-bottom: 3vh;
+    /*overflow-x: scroll;
+    padding-bottom: 3vh;*/
     z-index: 10;
 }
 .triger-column-slider {
