@@ -8,7 +8,7 @@
         <div class="col-content-wrapper">
             <div class="col-img-galerie-carousel">
                 <div class="row-slider">
-                    <div class="main-img" id="pr-galery" style="-webkit-overflow-scrolling: touch;">
+                    <div class="main-img" id="pr-galery">
                         {% for img in product.images.all %}
                         <img src="{{ img.image.url}}" id="mod-img-{{ img.id }}">
                         {% endfor %}

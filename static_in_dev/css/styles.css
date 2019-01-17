@@ -16,7 +16,7 @@
 @media only screen and (max-width: 480px){
 /* Smartphones */
     #pr-galery {
-    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
 }
     .nav-pan {
         flex-direction: row-reverse;

@@ -1,8 +1,9 @@
 // Turn product slider galery on Touchscreen
-$(window).scroll(function() { alert("Scrolled"); });
+//$('#pr-galery').scroll(function() { alert("Scrolled"); });
 
 var touches = [];
-var cache = new Object();
+var cacheX = new Object();
+var cacheY = new Object();
 $(document).ready(function () {
 
     setupProductImgGalery();
@@ -28,42 +29,59 @@ console.info('Wait for touch');
 function xOnTouchStart(e) {
   e.preventDefault();
   var touchList = e.changedTouches;
-  var touchStartX;
   for(var i = 0; i < touchList.length; i++)
     {
-        touchStartX = touchList[i].screenX;
+        cacheX.key = touchList[i].screenX;
+        cacheY.key = touchList[i].screenY
     }
-    cache.key = touchStartX;
-    console.info('CACHE', cache, touchStartX);
+//    cacheX.key = touchStartX;
+//    cacheY.key = touchStartY
+    console.info('cacheX', cacheX, 'cacheY', cacheY);
 };
 function xOnTouchEnd(e) {
   var touchList = e.changedTouches;
   var direction;
-  var touchstartX = cache.key;
+//  var touchstartX = cacheX.key;
   for(var i = 0; i < touchList.length; i++)
   {
     touchEndX = touchList[i].screenX;
-    console.info('CACHE from Start', cache.key, 'touchEndX', touchEndX);
+    touchEndY = touchList[i].screenY;
+    console.info('touchEndY', touchEndY, 'touchEndX', touchEndX);
 
     }
-    direction = touchEndX - touchstartX;
-    checkTouchDirection(direction);
+    directionH = touchEndX - cacheX.key;
+    directionV = touchEndY - cacheY.key;
+    if (Math.abs(directionH) > 20) {
+        checkHorizontalTouchDirection(directionH);
+    }
+    else if (Math.abs(directionV) > 10) {
+        checkVerticalTouchDirection(directionV);
+    }
+    else {return false};
+
+//    checkTouchDirection(direction);
 };
-function checkTouchDirection(direction) {
-    console.info(direction, Math.abs(direction));
-    if (Math.abs(direction) > 20) {
-        if (direction > 0) {
+function checkHorizontalTouchDirection(directionH) {
+    console.info(directionH, Math.abs(directionH));
+        if (directionH > 0) {
             console.info('to right');
             turnProductImgGaleryRight();
         } else {
             turnProductImgGaleryLeft();
             console.info('to left');
         }
-    } else {
-        return false;
-    }
 }
+function checkVerticalTouchDirection(directionV) {
+    if (directionV > 0) {
+        y = Math.round(Math.abs(directionV))
+        console.info(directionV, 'scroll up', 'y', y);
+        window.scrollBy(0, -y);
+    } else {
+        window.scrollBy(0, Math.round(Math.abs(directionV)));
+        console.info(directionV, 'scroll down', Math.abs(directionV));
+    }
 
+}
 
 // scripts for Productfotogalerie
 function setupProductImgGalery() {
