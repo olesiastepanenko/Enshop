@@ -2,7 +2,7 @@
 //$('#pr-galery').scroll(function() { alert("Scrolled"); });
 
 var touches = [];
-var cacheX = new Object();
+
 var cacheY = new Object();
 $(document).ready(function () {
 
@@ -11,66 +11,111 @@ $(document).ready(function () {
 });
 
 
-$(init);
+var touch_position;
+var cachePosition = new Object();
 
-function init() {
-//$(document).ready(function () {
+function turn_start(event) {
+    cachePosition.key = event.touches[0].pageX;
+    console.info('cachePosition', cachePosition)
+}
 
-//var touchStartX;
-console.info('Wait for touch');
-  document.getElementById("pr-galery").addEventListener("touchstart", xOnTouchStart);
-  document.getElementById("pr-galery").addEventListener("touchend", xOnTouchEnd);
-  document.getElementById("pr-galery").addEventListener("touchcancel", xOnTouchEnd);
-
-};
-
-
-
-function xOnTouchStart(e) {
-  e.preventDefault();
-  var touchList = e.changedTouches;
-  for(var i = 0; i < touchList.length; i++)
-    {
-        cacheX.key = touchList[i].screenX;
-        cacheY.key = touchList[i].screenY
+function check_direction(event) {
+    var tmp_move = cachePosition.key - (event.touches[0].pageX);
+    console.info('cachePosition.key', cachePosition.key, 'X end', event.touches[0].pageX);
+    if (Math.abs(tmp_move) < 20) {
+        return false;
     }
+    else if (Math.abs(tmp_move) >= 20) {
+    if (tmp_move < 0) {
+        direction = 1;
+        console.info('direction 1?', direction, 'tmp_move', tmp_move);
+    }
+    else if (tmp_move) {
+        direction = 0;
+        console.info('direction 0?', direction,  'tmp_move', tmp_move);
+    }
+    else { return false }
+    }
+
+}
+
+function turn_page(event) {
+    if (direction == 1) {
+        target = $('div.triger-column-slider img.active').index();
+        console.info('on turn direction 1?', direction);
+        turnProductImgGaleryRight(target);
+        direction = 2;
+    }
+    else if (direction == 0) {
+        target = $('div.triger-column-slider img.active').index();
+        console.info('on turn direction 0?', direction);
+        turnProductImgGaleryLeft(target);
+        direction = 2;
+    }
+}
+
+
+
+
+//$(init);
+//
+//function init() {
+////$(document).ready(function () {
+//
+////var touchStartX;
+//console.info('Wait for touch');
+//  document.getElementById("pr-galery").addEventListener("touchstart", xOnTouchStart);
+//  document.getElementById("pr-galery").addEventListener("touchend", xOnTouchEnd);
+//  document.getElementById("pr-galery").addEventListener("touchcancel", xOnTouchEnd);
+//
+//};
+//
+//
+//
+//function xOnTouchStart(event) {
+//  e.preventDefault();
+//  var touchList = e.changedTouches;
+//  for(var i = 0; i < touchList.length; i++)
+//    {
+//        cacheX.key = touchList[i].screenX;
+//        cacheY.key = touchList[i].screenY
+//    }
 //    cacheX.key = touchStartX;
 //    cacheY.key = touchStartY
-    console.info('cacheX', cacheX, 'cacheY', cacheY);
-};
-function xOnTouchEnd(e) {
-  var touchList = e.changedTouches;
-  var direction;
-//  var touchstartX = cacheX.key;
-  for(var i = 0; i < touchList.length; i++)
-  {
-    touchEndX = touchList[i].screenX;
-    touchEndY = touchList[i].screenY;
-    console.info('touchEndY', touchEndY, 'touchEndX', touchEndX);
-
-    }
-    directionH = touchEndX - cacheX.key;
-    directionV = touchEndY - cacheY.key;
-    if (Math.abs(directionH) > 20) {
-        checkHorizontalTouchDirection(directionH);
-    }
-//    else if (Math.abs(directionV) > 10) {
-//        checkVerticalTouchDirection(directionV);
+//    console.info('cacheX', cacheX, 'cacheY', cacheY);
+//};
+//function checkHorizontalDirection(event) {
+//  var touchList = e.changedTouches;
+//  var direction;
+////  var touchstartX = cacheX.key;
+//  for(var i = 0; i < touchList.length; i++)
+//  {
+//    touchEndX = touchList[i].screenX;
+//    touchEndY = touchList[i].screenY;
+//    console.info('touchEndY', touchEndY, 'touchEndX', touchEndX);
+//
 //    }
-    else {return false};
-
-//    checkTouchDirection(direction);
-};
-function checkHorizontalTouchDirection(directionH) {
-    console.info(directionH, Math.abs(directionH));
-        if (directionH > 0) {
-            console.info('to right');
-            turnProductImgGaleryRight();
-        } else {
-            turnProductImgGaleryLeft();
-            console.info('to left');
-        }
-}
+//    directionH = touchEndX - cacheX.key;
+//    directionV = touchEndY - cacheY.key;
+//    if (Math.abs(directionH) > 20) {
+//        checkHorizontalTouchDirection(directionH);
+//    }
+////    else if (Math.abs(directionV) > 10) {
+////        checkVerticalTouchDirection(directionV);
+////    }
+//    else {return false};
+//
+//};
+//function turnHorisontalProductGalery(directionH) {
+//    console.info(directionH, Math.abs(directionH));
+//        if (directionH > 0) {
+//            console.info('to right');
+//            turnProductImgGaleryRight();
+//        } else {
+//            turnProductImgGaleryLeft();
+//            console.info('to left');
+//        }
+//}
 //function checkVerticalTouchDirection(directionV) {
 //    if (directionV > 0) {
 //        y = Math.round(Math.abs(directionV))
