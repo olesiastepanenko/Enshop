@@ -92,28 +92,31 @@ function openSideMobileNavBar(){
     $('.cat-menu-item').on('click', controlSideMobileNavBar);
 }
 function closeSideMobileNavBar() {
+    $('#side-pan-menu').removeAttr('style');
     if ($(".cat-menu-item.active" ).length > 0) {
         $(".cat-menu-item.active" ).removeClass('active').next().hide();
     }
 //    document.getElementById('side-pan-menu').style.display = "none";
-     $('#side-pan-menu').removeAttr('style');
+
 };
 function controlSideMobileNavBar() {
         if ($(".cat-menu-item.active" ).length === 0) {
             console.info('all is closed');
             $(this).addClass('active').next().show();
+            $(".cat-menu-item.active span.nav-icon").removeClass('lnr-chevron-down').addClass('lnr-chevron-up');
 
         } else {
             console.info('some is opened');
             if ($(this).hasClass('active')) {
                 console.info('it curr => close');
-                $(".cat-menu-item.active" ).css('background-color', '#10024f', 'color', '#e7e5ed');
-                console.info('css');
+                $(".cat-menu-item.active span.nav-icon").removeClass('lnr-chevron-up').addClass('lnr-chevron-down');
                 $(this).removeClass('active').next().hide();
             } else {console.info('it new');
+                $(".cat-menu-item.active span.nav-icon").removeClass('lnr-chevron-up').addClass('lnr-chevron-down');
                 $(".cat-menu-item.active" ).removeClass('active').next().hide();
                 console.info('old closed');
                 $(this).addClass('active').next().show();
+                $(".cat-menu-item.active span.nav-icon").removeClass('lnr-chevron-down').addClass('lnr-chevron-up');
                 console.log('new opened');
             }
 

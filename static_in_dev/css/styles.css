@@ -218,6 +218,10 @@
     .nav-icon {
         display: none;
     }
+    .cat-menu:hover a, .cat-menu:active a{
+        background-color: #b8b7bd;
+        color: #10024f;
+    }
     li.cat-menu:hover div.sub-cat-menu-item{
             display: block;
     }
@@ -345,18 +349,18 @@ ul.nav-pan-item-menu {
 .cat-menu:hover {
      cursor: pointer;
 }
-.cat-menu:hover a, .cat-menu:active a{
-    background-color: #e7e5ed;
-    color: #10024f;
-}
+.cat-menu .cat-menu-item.active, .cat-menu .cat-menu-item.active a, .cat-menu .cat-menu-item.active .nav-icon{
+        background-color: #b8b7bd;
+        color: #10024f;
+    }
 .cat-menu {
     background-color: #10024f;
     margin-top: 1px;
 }
-li.cat-menu:hover, li.cat-menu:hover .nav-icon {
-    background-color: #e7e5ed;
+/*li.cat-menu:hover, li.cat-menu:hover .nav-icon {
+    background-color: #b8b7bd;
     color: #10024f;
-}
+}*/
 .cat-menu-item {
     display: inline-block;
     line-height: 1.2em;
@@ -389,7 +393,7 @@ li.cat-menu:hover, li.cat-menu:hover .nav-icon {
 }
 .sub-cat-menu-item{
             display: none;
-            background-color: #e7e5ed;
+            background-color: #b8b7bd;
             /*padding-left: 5vw;*/
 }
 .sub-cat-menu-item a {
