@@ -101,17 +101,19 @@ function closeSideMobileNavBar() {
 function controlSideMobileNavBar() {
         if ($(".cat-menu-item.active" ).length === 0) {
             console.info('all is closed');
-            $(this).addClass('active').next().slideDown();
+            $(this).addClass('active').next().show();
 
         } else {
             console.info('some is opened');
             if ($(this).hasClass('active')) {
                 console.info('it curr => close');
-                $(this).removeClass('active').next().slideUp();
+                $(".cat-menu-item.active" ).css('background-color', '#10024f', 'color', '#e7e5ed');
+                console.info('css');
+                $(this).removeClass('active').next().hide();
             } else {console.info('it new');
                 $(".cat-menu-item.active" ).removeClass('active').next().hide();
                 console.info('old closed');
-                $(this).addClass('active').next().slideDown();
+                $(this).addClass('active').next().show();
                 console.log('new opened');
             }
 
