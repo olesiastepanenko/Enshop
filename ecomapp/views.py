@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from ecomapp.models import Category, SubCategory, Product, InfoImages, ProductSize, ProductSizeStock, Cart, CartItem, \
     PromotionImg, Order, Comment
+from ecomapp.serializers import CommentPreviewSerializer
+from rest_framework import generics
 from ecomapp.forms import OrderForm, RegistrationForm, LoginForm
 from django.contrib.auth import login, authenticate
 from decimal import Decimal
@@ -382,3 +384,7 @@ def login_view(request):
 #         if self.action == 'list':
 #             return CommentPreviewSerializer
 #         # return CommentDetailSerializer
+
+class CommentView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentPreviewSerializer

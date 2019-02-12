@@ -2,7 +2,6 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from . import views
 
-
 urlpatterns = [
     path('category/<category_slug>/', views.category_view, name='category_detail'),
     path('sub_category/<sub_category_slug>', views.sub_category_view, name='sub_category_detail'),
@@ -21,4 +20,5 @@ urlpatterns = [
     path('account', include('django.contrib.auth.urls')),
     path('login', views.login_view, name='login'),
     path('', views.base_view, name='base'),
+    path('api/ecomapp/', views.CommentView.as_view()),
 ]

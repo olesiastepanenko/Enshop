@@ -265,15 +265,15 @@ class Order(models.Model):
 #         return super(CommentsManager, self).get_queryset()
 
 
-# class Comment(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-#     datetime = models.DateTimeField(default=datetime.now, blank=True)
-#     stars = models.DecimalField(max_digits=9, decimal_places=1, default=0)
-#     title = models.CharField(max_length=300)
-#     comment = models.TextField()
-#     # objects = CommentsManager()
-#
-#     def __str__(self):
-#         return str(self.id)
+class Comment(models.Model):
+    id = models.AutoField(primary_key=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    datetime = models.DateTimeField(default=datetime.now, blank=True)
+    stars = models.DecimalField(max_digits=9, decimal_places=1, default=0)
+    title = models.CharField(max_length=300)
+    comment = models.TextField()
+    # objects = CommentsManager()
+
+    def __str__(self):
+        return str(self.id)
