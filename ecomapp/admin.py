@@ -7,7 +7,8 @@ from .models import Size, ProductSize, ProductSizeStock
 from .models import Product
 from .models import PromotionImg, InfoImages
 from .models import CartItem
-from .models import Cart, Order, ProductImages, Comment
+from .models import Cart, Order, ProductImages\
+    # , Comment
 
 # регистрация категорий
 # admin.site.register(Department)
