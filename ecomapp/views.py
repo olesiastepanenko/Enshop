@@ -2,10 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from ecomapp.models import Category, SubCategory, Product, InfoImages, ProductSize, ProductSizeStock, Cart, CartItem, \
-    PromotionImg, Order
+    PromotionImg, Order, Comment
 from ecomapp.forms import OrderForm, RegistrationForm, LoginForm
 from django.contrib.auth import login, authenticate
 from decimal import Decimal
+from rest_framework import viewsets
+from .serializers import *
 
 
 def base_view(request):
@@ -68,6 +70,7 @@ def product_view(request, product_slug):
     infoimg = InfoImages.object.all()
     productsize = ProductSize.objects.all()
     sizestock = ProductSizeStock.objects.all()
+    comments = Comment.objects.all()
     summ, items, items_of_cart = get_cart_info(cart)
     context = {
         'categories': categories,
@@ -371,3 +374,11 @@ def login_view(request):
         'form': form
     }
     return render(request, 'login.html', context)
+
+# class CommentViewSet(viewsets.ReadOnlyModelViewSet):
+#     queryset = Comment.objects.all()
+#
+#     def get_serializer_class(self):
+#         if self.action == 'list':
+#             return CommentPreviewSerializer
+#         # return CommentDetailSerializer
