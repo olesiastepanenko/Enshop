@@ -7,7 +7,7 @@ from .models import Size, ProductSize, ProductSizeStock
 from .models import Product
 from .models import PromotionImg, InfoImages
 from .models import CartItem
-from .models import Cart, Order, ProductImages, Comment
+from .models import Cart, Order, ProductImages
 
 # регистрация категорий
 # admin.site.register(Department)
@@ -23,8 +23,6 @@ admin.site.register(CartItem)
 admin.site.register(Cart)
 admin.site.register(Order)
 admin.site.register(ProductImages)
-# admin.site.register(Comment)
-
 
 class ProductSizeStockInline(nested_admin.NestedStackedInline):
     model = ProductSizeStock
