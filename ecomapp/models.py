@@ -63,7 +63,6 @@ def pre_save_Sub_Category_slug(sender, instance, *args, **kwargs):
 pre_save.connect(pre_save_Sub_Category_slug, sender=SubCategory)
 
 
-
 # модель брендов товаров
 class Brand(models.Model):
     name = models.CharField(max_length=100)
@@ -79,7 +78,7 @@ def image_folder(instance, filename):
     return '{0}/{1}'.format(instance.slug, filename)
 
 
-# Менеджер продукта в данном случае для метода all() чтобы отображались продукты available True
+# for method  all() view only products -  available True
 class ProductManager(models.Manager):
     def all(self, *args, **kwargs):
         return super(ProductManager, self).get_queryset().filter(available=True)
@@ -109,7 +108,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2)
     available = models.BooleanField(default=True)
     # size = models.ForeignKey(ProductSize, on_delete=models.CASCADE)
-    # так можно делать свои менеджеры
     objects = ProductManager()
 
     def __str__(self):
@@ -138,7 +136,6 @@ class Size(models.Model):
         return self.name
 
 
-# модель размеров
 class ProductSize(models.Model):
     id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, blank=True, default=None, related_name='size', on_delete=models.CASCADE)
@@ -155,7 +152,7 @@ class ProductSizeStock(models.Model):
     stock = models.PositiveIntegerField(default=0)
 
 
-# функция для получения названия промофото
+# Function for Promofotos FileName
 def image_folder_promo(instance, filename):
     ext = os.path.splitext(filename)[-1]
     filename = instance.slug
@@ -200,10 +197,8 @@ pre_save.connect(pre_save_promoimg_slug, sender=InfoImages)
 # def info_image_folder(instance, filename):
 
 
-# модель козины
 class Cart(models.Model):
     id = models.AutoField(primary_key=True)
-    # итоговая сумма корзины
     # summ = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
     # items = models.ManyToManyField(CartItem, blank=True)
     objects = models.Manager()
@@ -215,7 +210,7 @@ class Cart(models.Model):
 # промежуточный вариант товара для того чтобы его можно было добавить в корзину
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    # колличество
+    # qty
     amount = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
     item_total_price = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
@@ -228,7 +223,7 @@ class CartItem(models.Model):
         return 'Cart item for product {0}'.format(self.product.title)
 
 
-# модель для заказов
+# model for orders
 
 ORDER_STATUS_CHOICES = (
     ('In process', 'In process'),
@@ -247,7 +242,6 @@ class Order(models.Model):
     last_name = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=20, null=True)
     address = models.CharField(max_length=300, null=True)
-    # Самовывоз или доставка
     buying_type = models.CharField(max_length=40, choices=(('Pickup', 'Pickup'), ('Delivery', 'Delivery')),
                                    default='Pickup')
     date = models.DateTimeField(default=datetime.now, blank=True)
@@ -259,3 +253,22 @@ class Order(models.Model):
 
     def __str__(self):
         return "Order №{0}".format(str(self.id))
+
+#
+# class CommentsManager(models.Manager):
+#     def all(self, *args, **kwargs):
+#         return super(CommentsManager, self).get_queryset()
+
+
+# class Comment(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+#     datetime = models.DateTimeField(default=datetime.now, blank=True)
+#     stars = models.DecimalField(max_digits=9, decimal_places=1, default=0)
+#     title = models.CharField(max_length=300)
+#     comment = models.TextField()
+#     # objects = CommentsManager()
+#
+#     def __str__(self):
+#         return str(self.id)

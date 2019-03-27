@@ -51,6 +51,7 @@ ontouchend="turn_page(event);">
                 <div class="pr-info-top-sec">
                     <h3>{{ product.title }}</h3>
                 </div>
+                <!--<div class="comment"><a href="/comments">Comments</a> </div>-->
             </div>
             <div class="product-price">
                 <strong>Price:</strong> {{ product.price }} EUR
@@ -93,7 +94,7 @@ ontouchend="turn_page(event);">
                 <div class="butt-container">
                     <a class="add-to-cart" data-slug="{{product.slug}}" data-title="{{product.title}}"
                        data-price="{{product.price}}" href="#">
-                        <button class="basket-btn">
+                        <button class="basket-btn btn">
                             ADD TO CART
                         </button>
                     </a>

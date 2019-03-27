@@ -23,6 +23,8 @@ admin.site.register(CartItem)
 admin.site.register(Cart)
 admin.site.register(Order)
 admin.site.register(ProductImages)
+# admin.site.register(Comment)
+
 
 class ProductSizeStockInline(nested_admin.NestedStackedInline):
     model = ProductSizeStock

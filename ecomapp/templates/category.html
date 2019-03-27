@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
-<!--мы отображаем все что нах-ся ВНЕ block content-->
 {% block content  %}
-<!--все что будет написано внутри этого блока будет отображаться на странице категории-->
 <div class="content">
     <h2>{{ category.name }}</h2>
     <hr>
@@ -31,7 +29,7 @@
                             {{ product.price }} €
                         </div>
                         <div class="item-sale-price">
-                            <!--скидочная цена--> SALE
+                             SALE
                         </div>
                     </div>
                 </div>

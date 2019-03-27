@@ -14,18 +14,10 @@
 
 
     <!--  CSS -->
-    <!--<link rel='stylesheet' href='{% static "css/bootstrap.css" %}'>-->
-    <!--<link rel='stylesheet' href='{% static "css/shop-homepage.css" %}'>-->
     <link rel='stylesheet' href='{% static "css/styles.css" %}'>
     <link rel='stylesheet' href='{% static "css/palette.css" %}'>
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
-    <!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
     <!-- jQuery -->
     <script src='{% static "js/jquery.js" %}'></script>
 
@@ -37,33 +29,6 @@
 </head>
 
 <body>
-<!-- Navigation -->
-<!--<div >-->
-    <!--<ul class="navigation-panel">-->
-
-    <!--</ul>-->
-    <!--<div class="navigation-panel-item-logo"></div>-->
-    <!--<div class="navigation-panel-imem-menu">-->
-        <!--<ul class="category-menu">-->
-            <!--<li class="category-menu-item">-->
-                <!--<ul class="sub-category-menu">-->
-                    <!--<li class="sub-category-menu-item">-->
-                        <!--some content-->
-                    <!--</li>-->
-                    <!--<li class="sub-category-menu-item">-->
-
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!--<li class="category-menu-item">-->
-
-            <!--</li>-->
-        <!--</ul>-->
-    <!--</div>-->
-    <!--<div class="navigation-panel-imem-tools">-->
-
-    <!--</div>-->
-<!--</div>-->
 
 <nav class="nav">
     <div class="nav-pan">
@@ -134,7 +99,7 @@
                             </span>
                         <span class="user-tool-line-2">Basket</span></a>
                 </div>
-                <!--товары в выпадающей корзине-->
+                <!--products in DD basket-->
                 <ul id="dropdown-product-basket">
                         <li class="dropdown-product-basket-container">
                             <div class="dropdown-product-basket-img">
@@ -181,7 +146,7 @@
             </div>
             <br>
             <div class="content content-flow">
-                <!--цикл для отображения товаров-->
+                <!--Loop for Products view-->
                 {% for product in products %}
                 <div class="page-cont page-grid-quarter">
                     <div class="thumbnail">
@@ -206,7 +171,7 @@
                                     {{ product.price }} €
                                 </div>
                                 <div class="item-sale-price">
-                                    <!--скидочная цена--> SALE
+                                    <!--Hier will be Sale Price--> SALE
                                 </div>
                             </div>
                         </div>

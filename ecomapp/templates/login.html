@@ -4,13 +4,24 @@
 
 
 {% block content %}
-<h3>Authorization</h3>
-<div class="col-sm-8 col-sm-offset-2">
+<div class="content-wrapper">
+    <div class="auth-cont">
+    <div class="col-content-wrapper">
+        <h3>Existing Customers</h3>
+<p>Sign Into Ecom Shop</p>
 <form action="" method="post">
         {% csrf_token %}
     {{form|crispy}}
-    <input type="submit" class="btn btn-success btn-block" value="LOGIN ">
+    <input type="submit" class="btn login-btn" value="LOGIN ">
 </form>
+        </div>
+    <div class="col-content-wrapper">
+<h3>New Customers</h3>
+        <a href="{% url 'registration' %}">
+            <button class="btn reg-btn">REGISTER</button>
+        </a>
+    </div>
+    </div>
     </div>
 
 {% endblock content %}

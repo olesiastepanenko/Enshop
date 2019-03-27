@@ -3,30 +3,29 @@
 {% load crispy_forms_tags %}
 
 
-<!--django-crispy-forms библиотека которая помогает привести все формы к одному стилю в данном случае bootstrap
-при этом в settings.py добавляем настройку CRISPY_TEMPLATE_PACK = 'bootstrap3' и 'crispy_forms' в INSTALLED_APPS-->
 {% block content %}
-<form action="{% url 'make_order' %}" method="post" >
-    <!--должно быть в форме с методом Post если это форма для внутреннего URL-->
-    {% csrf_token %}
-    <!--так можно просто отобразить форму #{{form|crispy }}-->
-    <div class="col-sm-4">
-        {{form.first_name|as_crispy_field }}
-    </div>
-    <div class="col-sm-4">
-        {{form.last_name|as_crispy_field }}
-    </div>
-    <div class="col-sm-4">
-        {{form.phone|as_crispy_field }}
-    </div>
-    {{ form.email|as_crispy_field }}
-    {{ form.buying_type|as_crispy_field }}
-    {{ form.address|as_crispy_field }}
-    {{ form.date|as_crispy_field }}
-    {{ form.comments|as_crispy_field }}
-    <input type="submit" class="btn btn-success" value="CHECKOUT">
+<div class="content-wrapper">
+    <form action="{% url 'make_order' %}" method="post">
+        {% csrf_token %}
+        <!--or  #{{form|crispy }}-->
+        <div>
+            {{form.first_name|as_crispy_field }}
+        </div>
+        <div>
+            {{form.last_name|as_crispy_field }}
+        </div>
+        <div>
+            {{form.phone|as_crispy_field }}
+        </div>
+        {{ form.email|as_crispy_field }}
+        {{ form.buying_type|as_crispy_field }}
+        {{ form.address|as_crispy_field }}
+        {{ form.date|as_crispy_field }}
+        {{ form.comments|as_crispy_field }}
+        <input type="submit" class="btn process-btn" value="CHECKOUT">
 
-</form>
+    </form>
+</div>
 
 <script src='{% static "js/jquery.js" %}'></script>
 <script>
@@ -41,6 +40,7 @@
                 };
         });
     });
+
 
 </script>
 {% endblock content %}

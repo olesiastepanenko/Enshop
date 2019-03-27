@@ -3,8 +3,9 @@
 
 
 {% block content %}
-<div id="checkoutBasket">
+<div id="checkoutBasket" class="content-wrapper">
     <h3>Your order</h3>
+    <div class="col-content-wrapper"><p>Total: {{summ}} EUR</p></div>
     <table class="table" style="margin-top:3vh;">
         <thead>
         <tr>
@@ -22,11 +23,12 @@
             <td class="colum-image">
                 {% for img in item.product.images.all|slice:":1" %}
                 <div class="basket-img">
-                    <a href="{{ item.product.get_absolute_url }}"> <img src="{{ img.image.url }}" style="width:7vw;"></a>
+                    <a href="{{ item.product.get_absolute_url }}"> <img src="{{ img.image.url }}"
+                                                                        style="width:7vw;"></a>
                 </div>
                 {%endfor%}
             </td>
-            <td class="colum-description" style="text-align:left; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">
+            <td class="colum-description">
                 <div>
                     <h6>{{item.product.brand}}</h6>
                     <p class="item-article-name">{{item.product.title}}</p>
@@ -35,22 +37,24 @@
             <td>
                 {{item.amount}}
             </td>
-            <td>{{item.size}}</td>
+            <td class="size">{{item.size}}</td>
             <td>
                 <div>
                     {{item.item_total_price }}
                 </div>
             </td>
-            <td>
-                <div><p>Total: {{summ}} EUR</p></div>
-            </td>
+
         </tr>
         {% endfor %}
+
         </tbody>
     </table>
-    <a href="{% url 'create_order' %}" class="pull-right">
-        <button class="btn btn-success">GO TO CHECKOUT</button>
-    </a>
+    <div class="col-content-wrapper">
+
+        <a href="{% url 'create_order' %}">
+            <button class="btn process-btn">GO TO CHECKOUT</button>
+        </a>
+    </div>
 </div>
 
 {% endblock content %}

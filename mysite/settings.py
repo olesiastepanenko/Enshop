@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'nested_admin',
     'mptt',
+    'rest_framework',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,4 +127,17 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static_in_dev'),
 )
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}
+# CRISPY_TEMPLATE_PACK = 'bootstrap3'
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
