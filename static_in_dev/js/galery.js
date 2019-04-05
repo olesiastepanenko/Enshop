@@ -68,7 +68,7 @@ function setupProductImgGalery() {
     if (windowSize > 480) {
         console.info('window is more than 480 px, ready open Modal IMG');
         $('div.main-img img').on('click', openModalProductImg);
-        $('#closyaka_product').on('click', closeModalProductImg);
+        $('#close_product').on('click', closeModalProductImg);
     }
 
 
@@ -121,7 +121,8 @@ function openModalProductImg() {
    $('#mod-show').addClass('active');
 };
 function closeModalProductImg() {
-    $('#cont-img').fadeToggle();
+    $('#cont-img').removeAttr('style')
+//    .fadeToggle();
     $('#mod-show').removeClass('active');
     console.info('Modal Img was closed');
 };
