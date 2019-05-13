@@ -44,12 +44,14 @@ function сontrolOfDropDownSizeChoises(){
     var size_content = $(".dropdown-content");
     if (size_content.is(":hidden")) {
         console.log('Dropdown Size content is hidden, ready for open');
-        size_content.slideDown("slow");
+        size_content.show();
+        //slideDown("slow");
         console.log('Dropdown Size is opened OK');
     }
     else {
         console.log('It was clicked for close Dropdown Size');
-        size_content.slideUp();
+        size_content.hide();
+        //slideUp();
         console.log('Dropdown Size is closed OK');
     }
     console.groupEnd('The END of Event for Dropdown Size');
