@@ -48,7 +48,7 @@ function сontrolOfDropDownSizeChoises(){
         //slideDown("slow");
         console.log('Dropdown Size is opened OK');
     }
-    else {
+    else if(!size_content.is(":hidden")) {
         console.log('It was clicked for close Dropdown Size');
         size_content.hide();
         //slideUp();
