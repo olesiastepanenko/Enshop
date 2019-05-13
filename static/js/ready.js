@@ -1,4 +1,4 @@
-//script for dropdown show Size
+//script for dropdown show Size.
 //const isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
 $(document).ready(function () {
     console.info("setup ready.js");
@@ -354,7 +354,6 @@ function controlSizeGuide() {
         }
      });
 }
-
 function closeModalImgESC(){
 if (($('#size-guide').hasClass('active')) && (event.which == 27)) {
         $('#size-guide').css('display', 'none');
@@ -366,4 +365,5 @@ if (($('#size-guide').hasClass('active')) && (event.which == 27)) {
             $('#mod-show').removeClass('active');
         };
     });}
-
+//git remote add origin https://github.com/olesiastepanenko/Enshop.git
+//pa_autoconfigure_django.py https://github.com/olesiastepanenko/Enshop.git
