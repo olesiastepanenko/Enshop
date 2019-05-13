@@ -355,4 +355,5 @@ function controlSizeGuide() {
      });
 }
 
-
+//git remote add origin https://github.com/olesiastepanenko/Enshop.git
+//pa_autoconfigure_django.py https://github.com/olesiastepanenko/Enshop.git
