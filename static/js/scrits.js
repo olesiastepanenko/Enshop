@@ -350,20 +350,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Script for modal Size guide with resposive tabs
 
     $(document).ready(function () {

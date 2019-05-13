@@ -364,6 +364,6 @@ if (($('#size-guide').hasClass('active')) && (event.which == 27)) {
             $('.modal-product-galerie').css('display', 'none');
             $('#mod-show').removeClass('active');
         };
-    });}
+    };
 //git remote add origin https://github.com/olesiastepanenko/Enshop.git
 //pa_autoconfigure_django.py https://github.com/olesiastepanenko/Enshop.git
