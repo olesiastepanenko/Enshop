@@ -199,17 +199,17 @@ $('div.row-size').on('click', function(){
 });
 
  // script for dropdown show Size
-    $(document).ready(function () {
-        $('.dropdown-choices').on('click', function () {
-                if ($(".dropdown-content").is(":hidden")) {
-                    $(".dropdown-content").slideDown("slow");
-                }
-                else {
-                    $(".dropdown-content").slideUp();
-                }
-            }
-        );
-    });
+//    $(document).ready(function () {
+//        $('.dropdown-choices').on('click', function () {
+//                if ($(".dropdown-content").is(":hidden")) {
+//                    $(".dropdown-content").slideDown("slow");
+//                }
+//                else {
+//                    $(".dropdown-content").slideUp();
+//                }
+//            }
+//        );
+//    });
 
     // script for fotogalerie
 
