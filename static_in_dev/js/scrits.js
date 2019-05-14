@@ -81,7 +81,7 @@ function myCarousel(container){
             speed: 1000,
             btnNext: '.promo-slider-wrapper a.next',
             btnPrev: '.promo-slider-wrapper a.prev',
-            auto: null,
+            auto: 4000,
             backSlide: false
         };
         return container.each(function(){
