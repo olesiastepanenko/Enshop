@@ -1,7 +1,18 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
 from . import views
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap
+from ecomapp.sitemaps import CategorySitemap, SubcategorySitemap, ProductsSitemap
+from robots_txt.views import RobotsTextView
 
+
+sitemaps = {
+    'category_detail': CategorySitemap,
+    'sub_category_detail': SubcategorySitemap,
+    'product_detail': ProductsSitemap,
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = [
     path('category/<category_slug>/', views.category_view, name='category_detail'),
@@ -21,4 +32,9 @@ urlpatterns = [
     path('account', include('django.contrib.auth.urls')),
     path('login', views.login_view, name='login'),
     path('', views.base_view, name='base'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
+    path('robots.txt', RobotsTextView.as_view()),
+    path('', include('robots_txt.urls')),
 ]
+

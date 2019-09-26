@@ -7,7 +7,6 @@ from ecomapp.forms import OrderForm, RegistrationForm, LoginForm
 from django.contrib.auth import login, authenticate
 from decimal import Decimal
 from rest_framework import viewsets
-from .serializers import *
 
 
 def base_view(request):

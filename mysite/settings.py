@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'robots_txt',
     'ecomapp',
     'crispy_forms',
     'nested_admin',
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'webpack_loader',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -25,7 +25,7 @@ class LoginForm(forms.Form):
 
 
 class RegistrationForm(forms.ModelForm):
-    password_check = forms.CharField(widget=forms.PasswordInput)
+    password_check = forms.CharField(widget=forms.PasswordInput, initial='123')
     password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:

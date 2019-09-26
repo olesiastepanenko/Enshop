@@ -53,6 +53,8 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('sub_category_detail', kwargs={'sub_category_slug': self.slug})
 
 def pre_save_Sub_Category_slug(sender, instance, *args, **kwargs):
     if not instance.slug:
